@@ -1,0 +1,5 @@
+<?php
+
+    $lista_privilegios = [
+        
+    ];
