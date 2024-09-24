@@ -1,15 +1,19 @@
 <div class="w-full h-16 flex justify-between items-center bg-blue-500 border-b-2 border-gray-200">
     
-<div class="pl-2 pt-2">
+    <div class="pl-2 pt-2">
         <?php
             include 'views/modules/navegacion.php';
         ?>
     </div>
 
+    <div class="w-[85px] h-[85px]">
+            <img src="views/images/logo.png" alt="logo-vitalclinic">
+        </div>
+
     <div class="text-black pr-2 pt-2 flex gap-x-1 text-white text-sm">
         <p class="text-white">
             <?php 
-                echo $_SESSION['user']['name'] . ' '. $_SESSION['user']['lastname'] ;
+                echo $_SESSION['user']['name'] . ' '. $_SESSION['user']['lastname'];
             ?>
         </p>
 

@@ -16,7 +16,6 @@
             username,
             nombre,
             apellido
-
             FROM accounts
             inner join empleados
             on accounts.id_empleado = empleados.id

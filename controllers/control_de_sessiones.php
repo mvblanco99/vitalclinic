@@ -2,7 +2,7 @@
 
     class ControlSesiones{
 
-        public function generar_sesion($username,$name,$lastname,$role){
+        public function generar_sesion($username,$name,$lastname,$role,$id_account){
             session_start();
             // Autenticación exitosa
             session_regenerate_id(true); // Regenera el ID de sesión
@@ -12,7 +12,8 @@
                 "username" => $username,
                 "name" => $name,
                 "lastname" => $lastname,
-                "role" => $role
+                "role" => $role,
+                "id_account" => $id_account
             ];
 
             return $_SESSION["user"];

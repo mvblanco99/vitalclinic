@@ -15,7 +15,7 @@ class Auth{
 
         if(count($data) > 0){
             $crear_session = new ControlSesiones();
-            $session = $crear_session->generar_sesion($data[0]['username'],$data[0]['nombre'],$data[0]['apellido'],$data[0]['role_id']);
+            $session = $crear_session->generar_sesion($data[0]['username'],$data[0]['nombre'],$data[0]['apellido'],$data[0]['role_id'],$data[0]['id_account']);
             return [ $session ];
         }else{
             // En caso contrario indicamos que las credenciales estan erroneas

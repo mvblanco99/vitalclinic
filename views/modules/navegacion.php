@@ -21,6 +21,18 @@
             <a href="registrar_empleado" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registrar Empleado</a>
         </li>
         <li>
+            <a href="registrar_cuenta" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registrar Cuenta</a>
+        </li>
+        <li>
+            <a href="registrar_ruta" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registrar Ruta</a>
+        </li>
+        <li>
+            <a href="registrar_pedido" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registrar Pedido</a>
+        </li>
+        <li>
+            <a href="consultar_pedido" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Consultar Pedido</a>
+        </li>
+        <li>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
         </li>
         <li>

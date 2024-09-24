@@ -7,7 +7,10 @@
             "login" => "auth/index" ,
             "registrar_empleado" => "registro/registrar_empleado",
             "registrar_cuenta" => "registro/registrar_cuenta",
-            "registrar_producto" => "inventario/registrar_producto"
+            "registrar_producto" => "inventario/registrar_producto",
+            "registrar_ruta" => "almacen/registrar_ruta",
+            "registrar_pedido" => "almacen/registrar_pedido",
+            "consultar_pedido" => "almacen/consultar_pedido"
         ];
 
         public function checkLinkExistence($name_link){
