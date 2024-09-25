@@ -33,6 +33,12 @@
             <a href="consultar_pedido" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Consultar Pedido</a>
         </li>
         <li>
+            <a href="rechequear_pedido" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rechequear Pedido</a>
+        </li>
+        <li>
+            <a href="registrar_fallas" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Registrar Fallas</a>
+        </li>
+        <li>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
         </li>
         <li>
