@@ -11,7 +11,7 @@
         include 'views/modules/header.php';
     ?>
 
-<div class="w-full flex items-center justify-center mt-8">
+    <div class="w-full flex items-center justify-center mt-8">
         <div class="w-96 flex flex-col justify-center items-center gap-y-1">
             <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full">
                 <h1 class="text-2xl font-bold text-white text-center">REGISTRAR RUTA</h1>

@@ -19,6 +19,5 @@ d.addEventListener('submit', e => {
 
     const formData = new FormData();
     formData.append('ruta', ruta);
-
     registrar_ruta(formData);
 });

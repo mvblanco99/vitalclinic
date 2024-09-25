@@ -64,11 +64,11 @@
                     
 
                     <label for="" class="w-full relative px-6">
-                    <input 
-                        type="submit" 
-                        value="Registrar" 
-                        class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-base font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
-                    >
+                        <input 
+                            type="submit" 
+                            value="Registrar" 
+                            class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-base font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
+                        >
                     </label>
                 </form>
             </div>
