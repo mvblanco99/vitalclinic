@@ -10,6 +10,7 @@
             "registrar_producto" => "inventario/registrar_producto",
             "registrar_ruta" => "almacen/registrar_ruta",
             "registrar_pedido" => "almacen/registrar_pedido",
+            "registrar_pedido_por_partes" => "almacen/registrar_pedido_por_partes",
             "consultar_pedido" => "almacen/consultar_pedido",
             "rechequear_pedido" => "almacen/rechequear",
             "registrar_fallas" => "almacen/registrar_fallas"
