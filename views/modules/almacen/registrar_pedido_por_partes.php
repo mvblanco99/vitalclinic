@@ -11,7 +11,7 @@
         include 'views/modules/header.php';
     ?>
     <div class="w-full mt-4">
-        <div class="bg-blue-500 border-2 border-white py-2 rounded-md mb-4 w-fit px-4 mx-auto">
+        <div class="bg-blue-500 border-2 border-white rounded-md mb-4 w-fit px-4 mx-auto">
             <h1 class="text-2xl font-bold text-white text-center">REGISTRAR PEDIDO</h1>
         </div>
 
@@ -60,20 +60,20 @@
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
                     <label for="lastname" class="w-full relative px-6">
                         <p class="text-white">Empleado</p>
-                        <select name="empleado" id="empleado" class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"></select>
+                        <select name="empleado" id="empleado" class="w-full border-2 border-gray-300 rounded-md p-2 px-4 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"></select>
                     </label>
                 </form>
 
                 <button 
                     id="registrar_pedido" 
                     type="button"
-                    class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-sm font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
+                    class="registrar_pedido w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-sm font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
                 >
                     Registrar
                 </button>
             </div>
 
-            <div class="w-[calc(80%-288px)] border-2 border-black bg-gray-100 h-fit">
+            <div class="w-[calc(80%-288px)] bg-gray-100 h-fit">
                 <table class="w-full table-auto border-separate border border-slate-400">
                     <thead>
                         <tr>

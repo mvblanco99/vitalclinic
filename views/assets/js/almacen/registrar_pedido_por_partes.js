@@ -101,9 +101,10 @@ const mostrar_datos_tabla = (datos) => {
 
 const registrar_pedido = async (form_data) => {
   try {
-    
+    const data = await app('./controllers/almacen/pedidos.php?registrar_pedido=1','POST',form_data);
+    console.log(data)
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
@@ -150,8 +151,7 @@ $empleado.addEventListener('change', e => {
   }
 })
 
-$registrar_pedido.addEventListener('click', e => {
-
+const addPedido = () => {
   const cod_pedido = d.querySelector('#cod_pedido');
   const ruta = d.querySelector('#ruta');
   const cant_unidades = d.querySelector('#cant_unidades');
@@ -190,15 +190,23 @@ $registrar_pedido.addEventListener('click', e => {
   formData.append('cod_pedido', cod_pedido.value);
   formData.append('ruta', ruta.value);
   formData.append('cant_unidades', cant_unidades.value);
-  formData.append('despachadores', despachadores);
 
-})
+  despachadores.forEach(item => {
+    formData.append('despachadores[]', item.id_despachador);
+  })
+  
+  registrar_pedido(formData)
+}
 
 d.addEventListener('click', e => {
     
   //Eliminamos despachador de la lista
   if(e.target.classList.contains('delete')){
       eliminar_despachador_tabla(despachadores,e.target.dataset.id);
+  }
+
+  if(e.target.classList.contains('registrar_pedido')){
+    addPedido();
   }
 });
 
