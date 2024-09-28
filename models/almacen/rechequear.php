@@ -55,6 +55,44 @@ class RechequearPedidoModel extends Connection{
         return $data;
     }
 
+    public function extraer_partes_pedido($num_pedido){
+
+        //Verificamos que el numero de pedido es correcto
+        $data = $this->verificar_num_pedido($num_pedido);
+
+        $id_pedido = $data[0]['id_pedido'];
+
+        $sql = "SELECT
+        nombre,
+        apellido,
+        pedidos_d_r_e.id,
+        pedidos_d_r_e.id_pedido,
+        pedidos_d_r_e.id_rechequeador,
+        pedidos_d_r_e.id_embalador,
+        pedidos_d_r_e.fecha_rechequeado,
+        id_despachador
+        FROM 
+        pedidos_d_r_e 
+        inner join empleados
+        on pedidos_d_r_e.id_despachador = empleados.id
+        WHERE id_pedido = '$id_pedido' 
+        ORDER BY pedidos_d_r_e.id";
+        $result = $this->conn->query($sql);
+
+        // Devolver los resultados como un array JSON
+        $dataBusqueda = array();
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                $dataBusqueda[] = $row;
+            }
+        }
+
+        // Cerrar conexión
+        //$this->conn->close();
+        return $dataBusqueda;
+    }
+
     public function rechequear_pedido($embalador="",$num_pedido=""){
         session_start();
         $user = $_SESSION['user']['id_account'];

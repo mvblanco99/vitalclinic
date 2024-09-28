@@ -4,7 +4,8 @@ const { asignar_valores_select } = utilidades();
 const d = document,
 $empleado = d.querySelector("#empleado"),
 $embalador_asignado = d.querySelector("#embalador_asignado"),
-$embalador_seleccionado = d.querySelector("#embalador_seleccionado");
+$embalador_seleccionado = d.querySelector("#embalador_seleccionado"),
+$fragment = d.createDocumentFragment();
 
 let embaladorAsignado;
 let embaladorSeleccionado = undefined;
@@ -64,6 +65,50 @@ const rechequear_pedido = async(form_data) => {
     }
 }
 
+const extraer_partes_pedidos = async(form_data) => {
+    try {
+        const data_partes_pedido = await app('./controllers/almacen/rechequear.php?extraer_partes_pedido=1','POST',form_data);
+        return data_partes_pedido;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const mostrar_partes_pedidos = (data_parts) => {
+    d.querySelector('#container_parts').classList.remove('hidden');
+
+    //Enlazamos el template creado en el HTML
+    const $template_item_form = d.querySelector('#template-item_form').content;
+    
+    if(data_parts.length > 0){
+
+    data_parts.forEach((element,i) => {
+
+        if(element.id_rechequeador === null){
+            //Insertamos los datos en el template
+            $template_item_form.querySelector('.part').textContent = `Parte ${i+1}` ;
+            $template_item_form.querySelector('.name').textContent = `${element.nombre} ${element.apellido}`;
+            $template_item_form.querySelector('.check').value = `${element.id}`;
+    
+      
+            //guardamos una copia de la estrutura actual del template en la variable $node
+            let $clone = $template_item_form.cloneNode(true);
+            //Guardamos el nodo en el fragment
+            $fragment.append($clone);
+        }
+      
+    });
+
+    // //Limpiamos la lista
+    d.querySelector("#form_parts").innerHTML = "";
+    //Insertamos el fragment en la lista
+    d.querySelector("#form_parts").append($fragment);
+  }else{
+    d.querySelector("#form_parts").innerHTML = "";
+  }
+
+}
+
 $embalador_asignado.addEventListener('click', e => {
     if(embaladorAsignado === undefined){
         alert('No tiene embalador asignado')
@@ -90,7 +135,7 @@ d.addEventListener('DOMContentLoaded', e =>{
     extraer_embalador_asignado();
 })
 
-d.addEventListener('submit', e =>{
+d.addEventListener('submit', async e =>{
     e.preventDefault()
 
     const embalador = embaladorSeleccionado;
@@ -110,5 +155,15 @@ d.addEventListener('submit', e =>{
     form_data.append('embalador', embalador.id_embalador);
     form_data.append('num_pedido', numero_pedido);
 
-    rechequear_pedido(form_data);
+    const partes_pedido = await extraer_partes_pedidos(form_data);
+    console.log(partes_pedido)
+
+    if(partes_pedido.length === 1){
+
+        return;
+    }
+
+    mostrar_partes_pedidos(partes_pedido);
+
 })
+

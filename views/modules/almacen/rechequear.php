@@ -12,22 +12,13 @@
     ?>
 
 
-    <div class="w-full flex items-center justify-center mt-8">
-        <div class="w-96 flex flex-col justify-center items-center gap-y-2">
+    <div class="w-full flex justify-center mt-8 gap-x-4">
+        <div class="w-96 flex flex-col gap-y-2">
             <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full">
                 <h1 class="text-2xl font-bold text-white text-center">RECHEQUEAR PEDIDO</h1>
             </div>
 
-            <!-- <div class="w-52 h-52 ">
-            <img src="views/images/logo.png" alt="logo-vitalclinic">
-            </div> -->
-            <span 
-            id="error-login"
-            class="w-full bg-white border-2 border-red-400 py-3 px-4 mb-2 text-red-500 rounded-sm text-center hidden"
-            >
-            
-            </span>
-            <div class="w-full h-fit">
+            <div class="w-full h-fit flex flex-col gap-y-4">
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
                     <label for="cod_pedido" class="w-full relative px-6">
                         <p class="text-white">Número de pedido:</p>
@@ -74,8 +65,27 @@
                 </form>
             </div>
         </div>
+
+        <div id="container_parts" class="w-[calc(50%-384px)] h-fit rounded-md flex flex-col gap-y-4 hidden">
+            <div class="border-2 border-white bg-blue-500 rounded-md">
+                <div class="my-2">
+                    <h2 class="text-center text-white font-medium">Seleccionar Partes del pedido a rechequear</h2>
+                </div>
+                <form action="" class="flex flex-col gap-y-2 px-2 mb-2">
+                    <div id="form_parts"></div>
+                    <input type="submit" value="registrar">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
+<template id="template-item_form">
+    <label for="" class="w-full border-2 border-gray-200 rounded-md flex items-center gap-x-4 py-2 px-2 my-2 text-white">
+        <div class="flex gap-x-2"><p class="part"></p><p class="name"></p></div>
+        <input type="checkbox" name="part" class="check">
+    </label>
+</template>
 
 <script src="./views/assets/js/api.js"></script>
 <script src="./views/assets/js/almacen/rechequear.js" type="module"></script>
