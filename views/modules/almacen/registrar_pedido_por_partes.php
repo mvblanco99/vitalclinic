@@ -10,28 +10,29 @@
     <?php
         include 'views/modules/header.php';
     ?>
-    <div class="w-full border-2 border-red-500">
-        <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full mb-4">
+    <div class="w-full mt-4">
+        <div class="bg-blue-500 border-2 border-white py-2 rounded-md mb-4 w-fit px-4 mx-auto">
             <h1 class="text-2xl font-bold text-white text-center">REGISTRAR PEDIDO</h1>
         </div>
 
-        <div class="w-full flex">
-            <div class="w-72 flex flex-col gap-y-2">
+        <div class="w-full flex gap-x-4 justify-center h-fit">
+            
+            <div class="w-72 flex flex-col gap-y-6">
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
-                    <label for="cedula" class="w-full relative px-6">
+                    <label for="partes" class="w-full relative px-6">
                         <p class="text-white">Ingrese el número de partes:</p>
                         <input 
                             type="number" 
                             name="partes" 
                             id="partes"
+                            min=1
                             class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"
                         >
                     </label>
-                    <input type="submit" value="Guardar">
                 </form>
 
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
-                    <label for="cedula" class="w-full relative px-6">
+                    <label for="cod_pedido" class="w-full relative px-6">
                         <p class="text-white">Número de pedido:</p>
                         <input 
                             type="text" 
@@ -40,7 +41,7 @@
                             class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"
                         >
                     </label>
-                    <label for="lastname" class="w-full relative px-6">
+                    <label for="ruta" class="w-full relative px-6">
                         <p class="text-white">Ruta:</p>
                         <select name="ruta" id="ruta" class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"></select>
                     </label>
@@ -50,14 +51,8 @@
                             type="number" 
                             name="cant_unidades" 
                             id="cant_unidades"
+                            min=1
                             class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"
-                        >
-                    </label>
-                    <label for="" class="w-full relative px-6">
-                        <input 
-                            type="submit" 
-                            value="Registrar" 
-                            class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-base font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
                         >
                     </label>
                 </form>
@@ -68,30 +63,40 @@
                         <select name="empleado" id="empleado" class="w-full border-2 border-gray-300 rounded-md p-2 pt-2 my-1 font-extralight text-black-500 font-medium text-base focus:outline-none"></select>
                     </label>
                 </form>
+
+                <button 
+                    id="registrar_pedido" 
+                    type="button"
+                    class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-sm font-medium focus:outline-none cursor-pointer bg-blue-600 hover:border-purple-500"
+                >
+                    Registrar
+                </button>
             </div>
 
-            <div>
-                <table>
+            <div class="w-[calc(80%-288px)] border-2 border-black bg-gray-100 h-fit">
+                <table class="w-full table-auto border-separate border border-slate-400">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cedula</th>
-                            <th>Accion</th>
+                            <th class="border-2 border-black-500 text-white bg-gray-400">N° Parte</th>
+                            <th class="border-2 border-black-500 text-white bg-gray-400">Despachador</th>
+                            <th class="border-2 border-black-500 text-white bg-gray-400">Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Manuel</td>
-                            <td>Blanco</td>
-                            <td>cedula</td>
-                            <td><button type="button">Eliminar</button></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="body_table"></tbody>
                 </table>
             </div>
-
         </div>
-
     </div>
 </div>
+
+<template id="template_body_table_pedidos">
+    <tr>
+        <td class="part border-2 border-black-500 text-black text-center"></td>
+        <td class="despachador border-2 border-black-500 text-black text-center"></td>
+        <td class="action border-2 border-black-500 text-black text-center"><button class="delete">Eliminar</button></td>
+    </tr>
+</template>
+
+
+<script src="./views/assets/js/api.js"></script>
+<script src="./views/assets/js/almacen/registrar_pedido_por_partes.js" type="module"></script>

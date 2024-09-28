@@ -75,12 +75,14 @@ $embalador_asignado.addEventListener('click', e => {
 })
 
 $empleado.addEventListener('change', e => {
-    const object = {
-        id_embalador : $empleado.value,
-        nombre: $empleado.options[$empleado.selectedIndex].text
+    if($empleado.value !== ""){
+        const object = {
+            id_embalador : $empleado.value,
+            nombre: $empleado.options[$empleado.selectedIndex].text
+        }
+        embaladorSeleccionado = object;
+        $embalador_seleccionado.value = embaladorSeleccionado.nombre;
     }
-    embaladorSeleccionado = object;
-    $embalador_seleccionado.value = embaladorSeleccionado.nombre;
 })
 
 d.addEventListener('DOMContentLoaded', e =>{
