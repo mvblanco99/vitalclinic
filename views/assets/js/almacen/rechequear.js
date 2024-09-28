@@ -96,7 +96,6 @@ const mostrar_partes_pedidos = (data_parts) => {
             //Guardamos el nodo en el fragment
             $fragment.append($clone);
         }
-      
     });
 
     // //Limpiamos la lista
@@ -151,19 +150,19 @@ d.addEventListener('submit', async e =>{
         return;
     }
 
-    const form_data = new FormData();
-    form_data.append('embalador', embalador.id_embalador);
-    form_data.append('num_pedido', numero_pedido);
-
     const partes_pedido = await extraer_partes_pedidos(form_data);
-    console.log(partes_pedido)
 
     if(partes_pedido.length === 1){
+        const form_data = new FormData();
+        form_data.append('embalador', embalador.id_embalador);
+        partes_pedido.forEach(item => {
+            form_data.append('parts[]', item.id);
+        });
 
+        rechequear_pedido(form_data);
         return;
     }
 
     mostrar_partes_pedidos(partes_pedido);
-
 })
 

@@ -4,9 +4,9 @@ include "../../models/almacen/rechequear.php";
 
 class RechequearPedidoController{
 
-    public function rechequear($embalador="",$num_pedido=""){
+    public function rechequear($embalador="",$parts=[]){
         $model = new RechequearPedidoModel();
-        $data = $model->rechequear_pedido($embalador,$num_pedido);
+        $data = $model->rechequear_pedido($embalador,$parts);
         return $data;
     }
 
@@ -26,10 +26,10 @@ class RechequearPedidoController{
 
 if(isset($_GET['rechequear'])){
     $embalador = $_POST['embalador'];
-    $num_pedido = $_POST['num_pedido'];
+    $parts = $_POST['parts'];
 
     $controller = new RechequearPedidoController();
-    $data = $controller->rechequear($embalador,$num_pedido);
+    $data = $controller->rechequear($embalador,$parts);
     echo json_encode($data);
 }
 

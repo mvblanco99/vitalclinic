@@ -93,7 +93,7 @@ class RechequearPedidoModel extends Connection{
         return $dataBusqueda;
     }
 
-    public function rechequear_pedido($embalador="",$num_pedido=""){
+    public function rechequear_pedido($embalador="",$parts=[]){
         session_start();
         $user = $_SESSION['user']['id_account'];
 
