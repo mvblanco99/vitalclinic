@@ -5,15 +5,18 @@
        private $lista_links_permitidos = [
             "inicio" => "inicio",
             "login" => "auth/index" ,
-            "registrar_empleado" => "registro/registrar_empleado",
-            "registrar_cuenta" => "registro/registrar_cuenta",
+            "registrar_empleado" => "users/registrar_empleado",
+            "modificar_empleado" => "users/modificar_empleado",
+            "registrar_cuenta" => "users/registrar_cuenta",
+            "modificar_cuenta" => "users/modificar_cuenta",
             "registrar_producto" => "inventario/registrar_producto",
             "registrar_ruta" => "almacen/registrar_ruta",
             "registrar_pedido" => "almacen/registrar_pedido",
             "registrar_pedido_por_partes" => "almacen/registrar_pedido_por_partes",
             "consultar_pedido" => "almacen/consultar_pedido",
             "rechequear_pedido" => "almacen/rechequear",
-            "registrar_fallas" => "almacen/registrar_fallas"
+            "registrar_fallas" => "almacen/registrar_fallas",
+
         ];
 
         public function checkLinkExistence($name_link){
