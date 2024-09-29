@@ -2,7 +2,7 @@
     
     <div class="pl-2 pt-2">
         <?php
-            include 'views/modules/navegacion.php';
+            include 'views/modules/n2.php';
         ?>
     </div>
 
