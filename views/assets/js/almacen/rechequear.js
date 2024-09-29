@@ -150,7 +150,14 @@ d.addEventListener('submit', async e =>{
         return;
     }
 
-    const partes_pedido = await extraer_partes_pedidos(form_data);
+    const formData = new FormData();
+    formData.append('num_pedido', numero_pedido);
+
+    const partes_pedido = await extraer_partes_pedidos(formData);
+
+    //verificamos si el pedido ha sido rechequeado
+    //verificar()
+
 
     if(partes_pedido.length === 1){
         const form_data = new FormData();
