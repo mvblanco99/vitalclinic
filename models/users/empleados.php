@@ -39,7 +39,7 @@
         }
         
         public function extraer_datos_empleados(){
-            $sql = "SELECT * FROM empleados WHERE status=1";
+            $sql = "SELECT * FROM empleados WHERE status=1 order by id";
 
             $result = $this->conn->query($sql);
 
@@ -58,7 +58,9 @@
         }
 
         public function extraer_datos_accounts(){
-            $sql = "SELECT * FROM accounts WHERE status=1";
+            $sql = "SELECT * FROM accounts 
+            WHERE status = 1 
+            AND role_id != 1";
 
             $result = $this->conn->query($sql);
 
@@ -176,4 +178,38 @@
       
               return $is_register;
         }
+
+        public function modificar_account($id="",$username="",$password="",$role="",$status=""){
+            // Consulta SQL
+            $sql = "UPDATE accounts SET
+            username = ?,
+            password = ?, 
+            role_id = ?,
+            status = ?
+            WHERE id_account = ?";
+          
+            $is_register = false;
+    
+            // Preparar la consulta
+            $stmt = $this->conn->prepare($sql);
+            
+            if ($stmt === false) {
+                die('Error en la preparación de la consulta: ' . $this->conn->error);
+            }
+    
+            // Vincular parámetros
+            $stmt->bind_param("sssss",$username,$password,$role,$status,$id);
+    
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                $is_register = true;
+            }
+    
+            // Cerrar la declaración
+            $stmt->close();
+            // Cerrar la conexión
+            // $this->conn->close();
+    
+            return $is_register;
+      }
     }

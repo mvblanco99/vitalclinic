@@ -25,6 +25,13 @@
             return $data;
         }
 
+        public function modificar_account($id="",$username="",$password="",$role="",$status=""){
+            //VALIDAR DATA
+            $model = new EmpleadosModel();
+            $data = $model->modificar_account($id,$username,$password,$role,$status);
+            return $data;
+        }
+
         public function buscar_empleado($cedula=""){
             //VALIDAR DATA
             $model = new EmpleadosModel();
@@ -95,19 +102,31 @@
             ];
             echo json_encode($response);
         }
+    }
 
-        //Verificamos que el empleado exista en base de datos
-        // $empleado = $controller->buscar_empleado($cedula);
+    if(isset($_GET['modificar_account'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $role = $_POST['role'];
+        $id = $_POST['id'];
+        $status = $_POST['status'];
 
-        // if(count($empleado) > 0){
-           
-        // }else{
-        //     $response = [
-        //         "data" => [],
-        //         "error" => ["Empleado no se encuenta registrado"],
-        //     ];
-        //     echo json_encode($response);
-        // }
+        $controller = new EmpleadosController();
+
+        $data = $controller->modificar_account($id,$username,$password,$role,$status);
+        if($data){
+            $response = [
+                "data" => [$data],
+                "error" => [],
+            ];
+            echo json_encode($response);
+        }else{
+            $response = [
+                "data" => [],
+                "error" => ["Ha ocurrido un error"],
+            ];
+            echo json_encode($response);
+        }
     }
 
     if(isset($_GET['extraer_empleados'])){
