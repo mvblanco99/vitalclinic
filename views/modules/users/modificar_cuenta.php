@@ -15,11 +15,11 @@
     <div class="w-full flex items-center justify-center mt-6">
         <div class="w-96 flex flex-col justify-center items-center gap-y-2">
             
-            <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full">
-                <h1 class="text-2xl font-bold text-white text-center">REGISTRAR USUARIO</h1>
+            <div class="bg-blue-500 border-2 border-white py-2 rounded-md w-full shadow-md">
+                <h1 class="text-2xl font-bold text-white text-center">MODIFICAR USUARIO</h1>
             </div>
 
-            <div class="w-full h-fit">
+            <div class="w-full h-fit shadow-md">
                 <form class="flex flex-col items-center py-2 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
                     <label for="account" class="w-full relative px-6">
                         <p class="text-white">Cuenta Usuario</p>
@@ -31,7 +31,7 @@
                 </form>
             </div>
             
-            <div class="w-full h-fit">
+            <div class="w-full h-fit shadow-md">
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
 
                 <input type="text" id="id" name="id" class="hidden">
@@ -74,11 +74,11 @@
                     </label>
 
                     <label for="" class="w-full relative px-6">
-                    <input 
-                        type="submit" 
-                        value="Registrar" 
-                        class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-base font-medium focus:outline-none cursor-pointer bg-blue-600"
-                    >
+                        <input 
+                            type="submit" 
+                            value="Modificar" 
+                            class="w-full border-2 border-gray-300 rounded-md px-6 py-2 mt-3 mb-2 font-extralight text-white text-base font-medium focus:outline-none cursor-pointer bg-blue-600"
+                        >
                     </label>
                 </form>
             </div>
@@ -89,4 +89,4 @@
 
 <script src="./views/assets/js/api.js"></script>
 <script src="./views/assets/js/utilidades.js"></script>
-<script src="./views/assets/js/users/modificar_cuenta.js" type="module"></script
+<script src="./views/assets/js/users/modificar_cuenta.js" type="module"></script> 

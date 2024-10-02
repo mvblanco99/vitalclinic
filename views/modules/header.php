@@ -1,4 +1,4 @@
-<div class="w-full h-16 flex justify-between items-center bg-blue-500 border-b-2 border-gray-200">
+<div class="w-full h-16 flex justify-between items-center bg-blue-500 border-b-2 border-gray-200 shadow-md">
     
     <div class="pl-2 pt-2">
         <?php

@@ -48,7 +48,6 @@ const mostrar_roles = (data_roles) => {
     );
 }
 
-
 const extraer_data_accounts = async () => {
     try {
         data_accounts = await app('./controllers/users/empleados.php?extraer_accounts=1');
@@ -67,16 +66,38 @@ const extraer_roles = async() => {
     }
 }
 
+const limpiarformmulario = () => {
+    d.querySelector('#username').value = "";
+    d.querySelector('#password').value = "";
+    d.querySelector('#id').value = "";
+    d.querySelector('#role').selectedIndex = 0;
+    d.querySelector('#status').selectedIndex = 0;
+}
+
+const modifica_account = async(form_data) => {
+    try {
+        const res = await app('./controllers/users/empleados.php?modificar_account=1','POST', form_data);
+          if(res.data.length > 0){
+              alert('Modificación exitosa');
+              limpiarformmulario();
+              extraer_data_accounts();
+          }else{
+              alert(`${res.error}`)
+          }
+  
+      } catch (error) {
+        console.log(error)
+      }
+}
+
 $account.addEventListener('change', e => {
     if($account.value !== ""){
         const id_account = $account.value;
         const data_account = data_accounts.filter(i => i.id_account === id_account);
 
-        console.log(data_account)
-
         d.querySelector('#username').value = data_account[0].username;
         d.querySelector('#password').value = data_account[0].password;
-        d.querySelector('#id').value = data_account[0].id;
+        d.querySelector('#id').value = data_account[0].id_account;
         d.querySelector('#role').selectedIndex = data_account[0].role_id;
         d.querySelector('#status').selectedIndex = data_account[0].status;
     }else{
@@ -88,4 +109,53 @@ $account.addEventListener('change', e => {
 d.addEventListener('DOMContentLoaded', e=> {
     extraer_data_accounts();
     extraer_roles();
-})
+});
+
+d.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const username = d.querySelector('#username').value;
+    const password = d.querySelector('#password').value;
+    const id = d.querySelector('#id').value;
+    const role = d.querySelector('#role').value;
+    const status = d.querySelector('#status').value;
+
+    if(id === ""){
+        alert('De seleccionar un usuario');
+        $account.focus();
+        return;
+    }
+
+    if(username === ""){
+        alert('Debe indicar el username');
+        d.querySelector('#username').focus();
+        return;
+    }
+
+    if(password === ""){
+        alert('Debe indicar la contraseña');
+        d.querySelector('#password').focus();
+        return;
+    }
+
+    if(role === ""){
+        alert('Debe indicar el role');
+        d.querySelector('#role').focus();
+        return;
+    }
+
+    if(status === ""){
+        alert('Debe indicar el status');
+        d.querySelector('#status').focus();
+        return;
+    }
+   
+    const formdata = new FormData();
+    formdata.append('username', username);
+    formdata.append('password', password);
+    formdata.append('id', id);
+    formdata.append('role', role);
+    formdata.append('status', status);
+
+    modifica_account(formdata)
+});
