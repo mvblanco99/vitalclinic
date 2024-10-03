@@ -95,7 +95,7 @@
                      <a href="modificar_pedido" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Modificar Pedido</a>
                   </li>
                   <li>
-                     <a href="registrar_cuenta" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Eliminar Pedido</a>
+                     <a href="eliminar_pedido" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Eliminar Pedido</a>
                   </li>
             </ul>
          </li>
