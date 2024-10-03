@@ -220,5 +220,67 @@
                 echo "Transacción fallida: " . $e->getMessage();
                 return false;
             }   
-        } 
+        }
+        
+        public function eliminar_pedido($cod_pedido=""){
+            
+             //Buscamos el id del pedido que acabamos de registrar
+             $data = $this->verificar_num_pedido($cod_pedido);
+
+             $id_pedido = $data[0]['id_pedido'];
+
+            // Iniciar la transacción
+             $this->conn->begin_transaction();
+
+             try {
+                 // Primera operación: INSERT en la tabla pedidos
+                 $sql_tabla_pedidos_d_r_e = "DELETE FROM pedidos_d_r_e WHERE id_pedido = ?";
+ 
+                 // Preparar la consulta
+                 $stmt = $this->conn->prepare($sql_tabla_pedidos_d_r_e);
+ 
+             
+                 // Verificar si la preparación falló
+                 if ($stmt === false) {
+                     throw new Exception("Error al preparar la consulta: " . $this->conn->error);
+                 }
+ 
+                 // Vincular parámetros
+                 $stmt->bind_param("s",$id_pedido);
+ 
+                 // Ejecutar la consulta
+                 if (!$stmt->execute()) {
+                     throw new Exception("Error al registrar en la tabla pedidos: " . $stmt->error);
+                 }
+ 
+                 // Segunda operación: Insert en tabla pedidos_d_r_e
+                 $sql_tabla_pedidos = "DELETE FROM pedidos WHERE id_pedido = ?";
+ 
+                 // Preparar la consulta
+                 $stmt2 = $this->conn->prepare($sql_tabla_pedidos);
+ 
+                 // Verificar si la preparación falló
+                 if ($stmt2 === false) {
+                     throw new Exception("Error al preparar la consulta: " . $this->conn->error);
+                 }
+      
+                // Vincular parámetros
+                $stmt2->bind_param("s", $id_pedido);
+
+                // Ejecutar la consulta
+                if (!$stmt2->execute()) {
+                    throw new Exception("Error al registrar en la tabla pedidos: " . $stmt2->error);
+                }
+                 
+ 
+                 // Confirmar la transacción
+                 $this->conn->commit();
+                 return true;
+             } catch (Exception $e) {
+                 // Revertir la transacción en caso de error
+                 $this->conn->rollback();
+                 echo "Transacción fallida: " . $e->getMessage();
+                 return false;
+             }   
+        }
     }
