@@ -19,7 +19,7 @@
             </div>
 
             <div class="w-full h-fit flex flex-col gap-y-4">
-                <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500">
+                <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500 registrar_pedido">
                     <label for="cod_pedido" class="w-full relative px-6">
                         <p class="text-white">Número de pedido:</p>
                         <input 
@@ -71,9 +71,9 @@
                 <div class="my-2">
                     <h2 class="text-center text-white font-medium">Seleccionar Partes del pedido a rechequear</h2>
                 </div>
-                <form action="" class="flex flex-col gap-y-2 px-2 mb-2">
+                <form action="" class="flex flex-col gap-y-2 px-2 mb-2 registrar_partes_pedido">
                     <div id="form_parts"></div>
-                    <input type="submit" value="registrar">
+                    <input type="submit" value="registrar" class="hover:cursor-pointer">
                 </form>
             </div>
         </div>

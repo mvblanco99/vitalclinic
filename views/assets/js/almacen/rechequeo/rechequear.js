@@ -9,6 +9,8 @@ $fragment = d.createDocumentFragment();
 
 let embaladorAsignado;
 let embaladorSeleccionado = undefined;
+let pp = undefined;
+let em = undefined;
 
 const extraer_embalador_asignado = async () => {
     try {
@@ -56,10 +58,12 @@ const extraer_data_empleados = async () => {
 
 const rechequear_pedido = async(form_data) => {
     try {
-        const data = await app('./controllers/almacen/rechequeo/rechequear.php?rechequear=1','POST',form_data);
-        if(!data){
-            alert('Ha proporcionado un codigo de pedido incorrecto')
-        }
+        const res = await app('./controllers/almacen/rechequeo/rechequear.php?rechequear=1','POST',form_data);
+        if(res.data.length > 0){
+            alert('Registro exitoso');
+          }else{
+              alert(`${res.error}`)
+          }
     } catch (error) {
         console.log(error)
     }
@@ -89,6 +93,7 @@ const mostrar_partes_pedidos = (data_parts) => {
             $template_item_form.querySelector('.part').textContent = `Parte ${i+1}` ;
             $template_item_form.querySelector('.name').textContent = `${element.nombre} ${element.apellido}`;
             $template_item_form.querySelector('.check').value = `${element.id}`;
+            $template_item_form.querySelector('.check').dataset.id = `${element.id}`;
     
       
             //guardamos una copia de la estrutura actual del template en la variable $node
@@ -102,10 +107,44 @@ const mostrar_partes_pedidos = (data_parts) => {
     d.querySelector("#form_parts").innerHTML = "";
     //Insertamos el fragment en la lista
     d.querySelector("#form_parts").append($fragment);
+
+    if(data_parts.length == 1){
+        d.querySelector("#container_parts").classList.add('hidden');
+    }else{
+        d.querySelector("#container_parts").classList.remove('hidden');
+    }
   }else{
     d.querySelector("#form_parts").innerHTML = "";
   }
 
+}
+
+const getDataForm = async (e) => {
+    const embalador = embaladorSeleccionado;
+    const numero_pedido = e.target.cod_pedido.value;
+
+    if(embalador === undefined){
+        alert('Por favor seleccionar un embalador');
+        return;
+    }
+
+    if(numero_pedido === ""){
+        alert('Por favor ingresar el numero de pedido');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('num_pedido', numero_pedido);
+
+    const partes_pedido = await extraer_partes_pedidos(formData);
+
+    if(partes_pedido.length === 0){
+        alert('Pedido no registrado')
+        return;
+    }
+    console.log(partes_pedido)
+    mostrar_partes_pedidos(partes_pedido);
+    return {partes_pedido, embalador, numero_pedido};
 }
 
 $embalador_asignado.addEventListener('click', e => {
@@ -137,39 +176,36 @@ d.addEventListener('DOMContentLoaded', e =>{
 d.addEventListener('submit', async e =>{
     e.preventDefault()
 
-    const embalador = embaladorSeleccionado;
-    const numero_pedido = e.target.cod_pedido.value;
+    if(e.target.classList.contains('registrar_pedido')){
+        const { partes_pedido, embalador } = await getDataForm(e);
 
-    if(embalador === undefined){
-        alert('Por favor seleccionar un embalador');
-        return;
+        em = embalador.id_embalador;
+
+        if(partes_pedido.length === 1){
+            const id_pedido_d_r_e = d.querySelector('.check').dataset.id;
+            const form_data = new FormData();
+            form_data.append('embalador', embalador.id_embalador);
+            form_data.append('id_pedido_d_r_e[]', id_pedido_d_r_e);   
+            rechequear_pedido(form_data);
+            return; 
+        }
     }
 
-    if(numero_pedido === ""){
-        alert('Por favor ingresar el numero de pedido');
-        return;
-    }
+    if(e.target.classList.contains('registrar_partes_pedido')){
+        
+        
+        if(em === undefined){
+            return;
+        }
 
-    const formData = new FormData();
-    formData.append('num_pedido', numero_pedido);
-
-    const partes_pedido = await extraer_partes_pedidos(formData);
-
-    //verificamos si el pedido ha sido rechequeado
-    //verificar()
-
-
-    if(partes_pedido.length === 1){
+        const id_pedido_d_r_e = Array.from(d.querySelectorAll('.check'));
+        const valueCheckbox = id_pedido_d_r_e.filter(e => e.checked).map(e => e.dataset.id)
         const form_data = new FormData();
-        form_data.append('embalador', embalador.id_embalador);
-        partes_pedido.forEach(item => {
-            form_data.append('parts[]', item.id);
-        });
-
+        form_data.append('embalador', em);
+        valueCheckbox.forEach(e => {
+            form_data.append('id_pedido_d_r_e[]', e);
+        })
         rechequear_pedido(form_data);
-        return;
     }
-
-    mostrar_partes_pedidos(partes_pedido);
 })
 

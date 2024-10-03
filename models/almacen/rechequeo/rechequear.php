@@ -60,6 +60,10 @@ class RechequearPedidoModel extends Connection{
         //Verificamos que el numero de pedido es correcto
         $data = $this->verificar_num_pedido($num_pedido);
 
+        if(count($data) === 0){
+            return [];
+        }
+        
         $id_pedido = $data[0]['id_pedido'];
 
         $sql = "SELECT
@@ -93,49 +97,47 @@ class RechequearPedidoModel extends Connection{
         return $dataBusqueda;
     }
 
-    public function rechequear_pedido($embalador="",$parts=[]){
+    public function rechequear_pedido($embalador="", $id_pedido_d_r_e=[]){
         session_start();
         $user = $_SESSION['user']['id_account'];
 
-        //Verificamos que el numero de pedido es correcto
-        $data = $this->verificar_num_pedido($num_pedido);
+        // Iniciar la transacción
+        $this->conn->begin_transaction();
 
-        //En caso de que el numero de pedido este incorrecto regresamos array vacio
-        if(count($data) == 0){
+        try {
+            // Primera operación: INSERT en la tabla pedidos
+            $sql = "UPDATE pedidos_d_r_e set 
+            id_rechequeador = ?,
+            id_embalador = ?,
+            fecha_rechequeado = NOW()
+            WHERE id = ?";
+
+            // Preparar la consulta
+            $stmt = $this->conn->prepare($sql);
+
+            if ($stmt === false) {
+                die('Error en la preparación de la consulta: ' . $this->conn->error);
+            }
+
+            foreach($id_pedido_d_r_e as $id_pedido){
+
+                // Vincular parámetros
+                $stmt->bind_param("sss", $user, $embalador, $id_pedido);
+
+                // Ejecutar la consulta
+                if (!$stmt->execute()) {
+                    throw new Exception("Error al registrar en la tabla pedidos: " . $stmt->error);
+                }
+            }
+
+            // Confirmar la transacción
+            $this->conn->commit();
+            return true;
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de error
+            $this->conn->rollback();
+            echo "Transacción fallida: " . $e->getMessage();
             return false;
-        }
-
-        $id_pedido = $data[0]['id_pedido'];
-
-        // Consulta SQL
-        $sql = "UPDATE pedidos set 
-        rechequeador = ?,
-        embalador = ?,
-        fecha_rechequeo = NOW()
-        WHERE id_pedido = ?";
-        
-        $is_register = false;
-
-        // Preparar la consulta
-        $stmt = $this->conn->prepare($sql);
-        
-        if ($stmt === false) {
-            die('Error en la preparación de la consulta: ' . $this->conn->error);
-        }
-
-        // Vincular parámetros
-        $stmt->bind_param("ssi", $user, $embalador, $id_pedido);
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            $is_register = true;
-        }
-
-        // Cerrar la declaración
-        $stmt->close();
-        // Cerrar la conexión
-        // $this->conn->close();
-
-        return $is_register;
+        }   
     }   
 }
