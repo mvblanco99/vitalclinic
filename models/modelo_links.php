@@ -16,7 +16,7 @@
             "modificar_pedido" => "almacen/pedidos/modificar_pedido",
             "eliminar_pedido" => "almacen/pedidos/eliminar_pedido",
             "consultar_pedido" => "almacen/consultar_pedido",
-            "rechequear_pedido" => "almacen/rechequear",
+            "rechequear_pedido" => "almacen/rechequeo/rechequear",
             "registrar_fallas" => "almacen/registrar_fallas",
 
         ];
