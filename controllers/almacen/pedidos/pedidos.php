@@ -20,6 +20,12 @@
             $data = $model->modificar_pedido($id_pedido,$despachadores,$id_parte_pedidos,$ruta,$cant_unidades);
             return $data;
         }
+
+        public function eliminar_pedido($cod_pedido=""){
+            $model = new PedidosModel();
+            $data = $model->eliminar_pedido($cod_pedido);
+            return $data;
+        }
     }
 
     if(isset($_GET['registrar_pedido'])){
@@ -122,5 +128,24 @@
             echo json_encode($response);
         }
 
+    }
+
+    if(isset($_GET['eliminar_pedido'])){
+        $cod_pedido = $_POST['cod_pedido'];
+        $controller = new PedidosController();
+        $data = $controller->eliminar_pedido($cod_pedido);
+        if($data){
+            $response = [
+                "data" => [$data],
+                "error" => [],
+            ];
+            echo json_encode($response);
+        }else{
+            $response = [
+                "data" => [],
+                "error" => ["Ha ocurrido un error"],
+            ];
+            echo json_encode($response);
+        }
     }
 
