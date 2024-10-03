@@ -45,4 +45,4 @@
 </div>
 
 <script src="./views/assets/js/api.js"></script>
-<script src="./views/assets/js/almacen/pedidos/modificar_pedido.js" type="module"></script>
+<script src="./views/assets/js/almacen/pedidos/eliminar_pedido.js" type="module"></script>
