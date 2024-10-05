@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 23:22:20
+-- Tiempo de generación: 05-10-2024 a las 23:49:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -42,9 +42,8 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`id_account`, `id_empleado`, `username`, `password`, `role_id`, `status`) VALUES
 (1, 1, 'mvblanco', '26532066', 1, '1'),
-(2, 3, 'miguelr', '1234', 3, '1'),
-(3, 4, 'flor', '3148', 2, '1'),
-(4, 6, 'D28599775', '123456', 4, '1');
+(2, 3, 'miguelr', '12345', 4, '1'),
+(3, 4, 'flori', '31487', 4, '1');
 
 -- --------------------------------------------------------
 
@@ -60,6 +59,27 @@ CREATE TABLE `articulos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `departamento`
+--
+
+CREATE TABLE `departamento` (
+  `id` int(11) NOT NULL,
+  `departamento` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `departamento`
+--
+
+INSERT INTO `departamento` (`id`, `departamento`) VALUES
+(1, 'Almacén'),
+(2, 'Depósito'),
+(3, 'Devoluciones'),
+(4, 'Recepción');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `empleados`
 --
 
@@ -68,20 +88,21 @@ CREATE TABLE `empleados` (
   `cedula` varchar(15) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
-  `status` enum('1','2') NOT NULL COMMENT '1-habilitdo,2-inhabilitado'
+  `status` enum('1','2') NOT NULL COMMENT '1-habilitdo,2-inhabilitado',
+  `departamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id`, `cedula`, `nombre`, `apellido`, `status`) VALUES
-(1, '26532066', 'Manuel', 'Blanco', '1'),
-(3, '23896869', 'Miguel', 'Rengel', '1'),
-(4, '26689817', 'Floriana', 'Sucre', ''),
-(5, '26532065', 'Jose', 'Miguel', '1'),
-(6, '28599775', 'Disanny', 'Monagas', '1'),
-(7, '2555555', 'Luis', 'Gimenez', '1');
+INSERT INTO `empleados` (`id`, `cedula`, `nombre`, `apellido`, `status`, `departamento`) VALUES
+(1, '26532066', 'Manuel', 'Blanco', '1', 0),
+(3, '23896869', 'Miguel', 'Rengel', '1', 0),
+(4, '26689817', 'Floriana', 'Sucre', '1', 0),
+(5, '26532065', 'Jose', 'Miguel', '1', 0),
+(6, '28599775', 'Disanny', 'Monagas', '1', 0),
+(7, '2555555', 'Luis', 'Gimenez', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -100,17 +121,27 @@ CREATE TABLE `entrada_existencia_lotes_productos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fallas`
+-- Estructura de tabla para la tabla `fallas_despachador`
 --
 
-CREATE TABLE `fallas` (
+CREATE TABLE `fallas_despachador` (
   `id` bigint(20) NOT NULL,
-  `id_pedido` bigint(100) NOT NULL,
+  `despachador` int(11) NOT NULL,
   `id_pedido_d_r_e` bigint(20) NOT NULL,
   `motivo` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `fallas_despachador`
+--
+
+INSERT INTO `fallas_despachador` (`id`, `despachador`, `id_pedido_d_r_e`, `motivo`, `descripcion`, `fecha`) VALUES
+(2, 4, 3, 1, 'Le falto un acetaminofen', '2024-10-05 17:39:13'),
+(3, 6, 1, 2, 'Trajo un diclofenac calox demas', '2024-10-05 17:41:18'),
+(4, 3, 4, 1, 'Le falto un acetaminofen', '2024-10-05 17:42:29'),
+(5, 3, 41, 2, 'kadkmadkadm', '2024-10-05 17:43:53');
 
 -- --------------------------------------------------------
 
@@ -188,12 +219,27 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id_pedido`, `numero_pedido`, `id_ruta`, `fecha`, `cantidad_unidades`, `distribuidor_pedidos`) VALUES
-(5, '123456789', 1, '2024-09-28 14:46:35', 5000, 1),
+(5, '123456789', 3, '2024-09-28 14:46:35', 5000, 1),
 (14, '1234567', 1, '2024-09-28 10:38:21', 10000, 1),
 (15, '12345', 1, '2024-09-28 10:39:17', 10000, 1),
 (16, '4545454', 1, '2024-09-28 11:16:11', 10000, 1),
 (17, '12334545', 1, '2024-09-28 11:21:34', 2000, 1),
-(18, '123456789987', 1, '2024-09-28 13:20:23', 100000, 1);
+(18, '123456789987', 1, '2024-09-28 13:20:23', 100000, 1),
+(19, '123456321', 1, '2024-09-30 12:37:36', 1000, 1),
+(20, '1234561234', 1, '2024-09-30 12:40:51', 2000, 1),
+(21, '1234569784563', 1, '2024-09-30 12:42:23', 850, 1),
+(22, '123456121551', 1, '2024-09-30 12:42:58', 10000, 1),
+(23, '123456515151', 1, '2024-09-30 12:43:51', 2021, 1),
+(24, '18118', 1, '2024-09-30 12:44:19', 1200, 1),
+(25, '215185151515', 1, '2024-09-30 12:47:14', 1200, 1),
+(26, '51125151245', 1, '2024-09-30 12:47:41', 1200, 1),
+(27, '241442154125', 1, '2024-09-30 12:48:12', 15151, 1),
+(28, '1234545', 1, '2024-10-02 16:54:05', 1000, 1),
+(29, '1189189515', 2, '2024-10-02 16:54:29', 152111212, 1),
+(30, '26532055', 1, '2024-10-03 12:21:37', 10000, 1),
+(31, '26532066', 1, '2024-10-03 17:46:37', 5200, 1),
+(32, '123321123', 1, '2024-10-03 17:48:11', 100, 1),
+(33, '123654', 1, '2024-10-05 17:42:51', 10000, 1);
 
 -- --------------------------------------------------------
 
@@ -215,11 +261,11 @@ CREATE TABLE `pedidos_d_r_e` (
 --
 
 INSERT INTO `pedidos_d_r_e` (`id`, `id_pedido`, `id_despachador`, `id_rechequeador`, `id_embalador`, `fecha_rechequeado`) VALUES
-(1, 5, 3, NULL, NULL, NULL),
-(2, 5, 1, NULL, NULL, NULL),
+(1, 5, 6, 1, 3, '2024-10-03 17:21:04'),
+(2, 5, 1, 1, 3, '2024-10-03 17:45:44'),
 (3, 5, 4, 3, 3, '2024-09-17 16:05:25'),
-(4, 5, 3, NULL, NULL, NULL),
-(5, 5, 1, NULL, NULL, NULL),
+(4, 5, 3, 1, 3, '2024-10-03 17:26:50'),
+(5, 5, 1, 1, 3, '2024-10-03 17:21:04'),
 (6, 14, 1, NULL, NULL, NULL),
 (7, 14, 3, NULL, NULL, NULL),
 (8, 14, 4, NULL, NULL, NULL),
@@ -233,7 +279,30 @@ INSERT INTO `pedidos_d_r_e` (`id`, `id_pedido`, `id_despachador`, `id_rechequead
 (16, 17, 4, NULL, NULL, NULL),
 (17, 18, 1, NULL, NULL, NULL),
 (18, 18, 3, NULL, NULL, NULL),
-(19, 18, 4, NULL, NULL, NULL);
+(19, 18, 4, NULL, NULL, NULL),
+(20, 19, 1, NULL, NULL, NULL),
+(21, 20, 1, NULL, NULL, NULL),
+(22, 21, 1, NULL, NULL, NULL),
+(23, 22, 1, NULL, NULL, NULL),
+(24, 23, 1, NULL, NULL, NULL),
+(25, 24, 1, NULL, NULL, NULL),
+(26, 25, 5, NULL, NULL, NULL),
+(27, 26, 5, NULL, NULL, NULL),
+(28, 27, 7, NULL, NULL, NULL),
+(29, 28, 3, NULL, NULL, NULL),
+(30, 29, 4, NULL, NULL, NULL),
+(31, 29, 7, NULL, NULL, NULL),
+(32, 29, 4, NULL, NULL, NULL),
+(33, 29, 3, NULL, NULL, NULL),
+(34, 30, 1, 1, 3, '2024-10-03 16:50:49'),
+(35, 31, 1, 1, 6, '2024-10-03 17:46:57'),
+(36, 31, 3, 1, 5, '2024-10-03 17:47:15'),
+(37, 31, 4, 1, 5, '2024-10-03 17:47:15'),
+(38, 31, 5, 1, 4, '2024-10-03 17:47:28'),
+(39, 31, 6, 1, 6, '2024-10-03 17:46:57'),
+(40, 32, 6, 1, 3, '2024-10-03 17:48:21'),
+(41, 33, 3, 1, 3, '2024-10-05 17:43:28'),
+(42, 33, 7, 1, 3, '2024-10-05 17:43:28');
 
 -- --------------------------------------------------------
 
@@ -382,7 +451,9 @@ CREATE TABLE `rutas` (
 --
 
 INSERT INTO `rutas` (`id`, `name`) VALUES
-(1, 'Maturin');
+(1, 'Maturin'),
+(2, 'caripito'),
+(3, 'sucre');
 
 -- --------------------------------------------------------
 
@@ -434,11 +505,19 @@ ALTER TABLE `articulos`
   ADD PRIMARY KEY (`art`);
 
 --
+-- Indices de la tabla `departamento`
+--
+ALTER TABLE `departamento`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `departamento` (`departamento`);
+
+--
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cedula` (`cedula`);
+  ADD UNIQUE KEY `cedula` (`cedula`),
+  ADD KEY `departamento` (`departamento`);
 
 --
 -- Indices de la tabla `entrada_existencia_lotes_productos`
@@ -449,13 +528,13 @@ ALTER TABLE `entrada_existencia_lotes_productos`
   ADD KEY `id_accounts` (`id_accounts`);
 
 --
--- Indices de la tabla `fallas`
+-- Indices de la tabla `fallas_despachador`
 --
-ALTER TABLE `fallas`
+ALTER TABLE `fallas_despachador`
   ADD PRIMARY KEY (`id`),
   ADD KEY `motivo` (`motivo`),
-  ADD KEY `id_pedido` (`id_pedido`),
-  ADD KEY `id_pedido_d_r_e` (`id_pedido_d_r_e`);
+  ADD KEY `id_pedido_d_r_e` (`id_pedido_d_r_e`),
+  ADD KEY `despachador` (`despachador`);
 
 --
 -- Indices de la tabla `lotes`
@@ -559,6 +638,12 @@ ALTER TABLE `articulos`
   MODIFY `art` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `departamento`
+--
+ALTER TABLE `departamento`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
@@ -571,10 +656,10 @@ ALTER TABLE `entrada_existencia_lotes_productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `fallas`
+-- AUTO_INCREMENT de la tabla `fallas_despachador`
 --
-ALTER TABLE `fallas`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `fallas_despachador`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `lotes`
@@ -598,13 +683,13 @@ ALTER TABLE `motivo_fallas`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pedido` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_d_r_e`
 --
 ALTER TABLE `pedidos_d_r_e`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
@@ -628,7 +713,7 @@ ALTER TABLE `roles_privilegios`
 -- AUTO_INCREMENT de la tabla `rutas`
 --
 ALTER TABLE `rutas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `salida_excepcional_articulos`
@@ -661,12 +746,12 @@ ALTER TABLE `entrada_existencia_lotes_productos`
   ADD CONSTRAINT `entrada_existencia_lotes_productos_ibfk_2` FOREIGN KEY (`id_lote`) REFERENCES `lotes` (`id`);
 
 --
--- Filtros para la tabla `fallas`
+-- Filtros para la tabla `fallas_despachador`
 --
-ALTER TABLE `fallas`
-  ADD CONSTRAINT `fallas_ibfk_1` FOREIGN KEY (`motivo`) REFERENCES `motivo_fallas` (`id`),
-  ADD CONSTRAINT `fallas_ibfk_4` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`),
-  ADD CONSTRAINT `fallas_ibfk_5` FOREIGN KEY (`id_pedido_d_r_e`) REFERENCES `pedidos` (`id_pedido`);
+ALTER TABLE `fallas_despachador`
+  ADD CONSTRAINT `fallas_despachador_ibfk_1` FOREIGN KEY (`motivo`) REFERENCES `motivo_fallas` (`id`),
+  ADD CONSTRAINT `fallas_despachador_ibfk_2` FOREIGN KEY (`despachador`) REFERENCES `empleados` (`id`),
+  ADD CONSTRAINT `fallas_despachador_ibfk_3` FOREIGN KEY (`id_pedido_d_r_e`) REFERENCES `pedidos_d_r_e` (`id`);
 
 --
 -- Filtros para la tabla `lotes`
