@@ -1,5 +1,5 @@
-import app from '../api.js';
-import utilidades from "../utilidades.js";
+import app from '../../api.js';
+import utilidades from "../../utilidades.js";
 const { asignar_valores_select } = utilidades();
 const d = document,
 $motivo = d.querySelector('#motivo');

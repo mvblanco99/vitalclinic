@@ -15,7 +15,7 @@
             "registrar_pedido_por_partes" => "almacen/pedidos/registrar_pedido_por_partes",
             "modificar_pedido" => "almacen/pedidos/modificar_pedido",
             "eliminar_pedido" => "almacen/pedidos/eliminar_pedido",
-            "consultar_pedido" => "almacen/consultar_pedido",
+            "consultar_pedido" => "almacen/pedidos/consultar_pedido",
             "rechequear_pedido" => "almacen/rechequeo/rechequear",
             "registrar_fallas" => "almacen/registrar_fallas",
 
