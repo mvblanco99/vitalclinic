@@ -64,7 +64,7 @@ const mostrar_rutas = (data_rutas) => {
 
 const extraer_data_rutas = async () => {
     try {
-        const data_rutas = await app('./controllers/almacen/rutas.php?extraer_rutas=1');
+        const data_rutas = await app('./controllers/almacen/rutas/rutas.php?extraer_rutas=1');
         mostrar_rutas(data_rutas)
     } catch (error) {
         console.log(error)

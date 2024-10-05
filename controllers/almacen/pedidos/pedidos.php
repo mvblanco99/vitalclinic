@@ -26,6 +26,13 @@
             $data = $model->eliminar_pedido($cod_pedido);
             return $data;
         }
+
+        //Funcion usada solo en la vista de consultar pedido
+        public function consultar_pedido($numero_pedido = ""){
+            $model = new PedidosModel();
+            $data = $model->consultar_pedido($numero_pedido);
+            return $data;
+        }
     }
 
     if(isset($_GET['registrar_pedido'])){
@@ -135,6 +142,25 @@
         $controller = new PedidosController();
         $data = $controller->eliminar_pedido($cod_pedido);
         if($data){
+            $response = [
+                "data" => [$data],
+                "error" => [],
+            ];
+            echo json_encode($response);
+        }else{
+            $response = [
+                "data" => [],
+                "error" => ["Ha ocurrido un error"],
+            ];
+            echo json_encode($response);
+        }
+    }
+
+    if(isset($_GET['consultar_pedido'])){
+        $numero_pedido = $_POST['numero_pedido'];
+        $controller = new PedidosController();
+        $data = $controller->consultar_pedido($numero_pedido);
+        if(count($data)>0){
             $response = [
                 "data" => [$data],
                 "error" => [],

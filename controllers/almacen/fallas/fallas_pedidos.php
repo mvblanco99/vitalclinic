@@ -1,5 +1,5 @@
 <?php
-    include "../../models/almacen/fallas_pedidos.php";
+    include "../../../models/almacen/fallas/fallas_pedidos.php";
 
     class FallasController{
 
@@ -9,9 +9,9 @@
             return $data;
         }
 
-        public function registrar_fallas($num_pedido="",$motivo="",$descripcion=""){
+        public function registrar_fallas($id_despachador = "",$motivo = "",$descripcion = "", $id_pedido_d_r_e = ""){
             $motivos = new FallasModel();
-            $data = $motivos->registrar_fallas($num_pedido,$motivo,$descripcion);
+            $data = $motivos->registrar_fallas($id_despachador,$motivo,$descripcion,$id_pedido_d_r_e);
             return $data;
         }
     }
@@ -25,13 +25,26 @@
 
     if(isset($_GET['registrar_fallas'])){
 
-        $num_pedido = $_POST['num_pedido'];
+        $id_despachador = $_POST['id_despachador'];
         $motivo = $_POST['motivo'];
         $descripcion = $_POST['descripcion'];
+        $id_pedido_d_r_e = $_POST['id_pedido_d_r_e'];
 
         $controller = new FallasController();
-        $data = $controller->registrar_fallas($num_pedido,$motivo,$descripcion);
-        echo json_encode($data);
+        $data = $controller->registrar_fallas($id_despachador,$motivo,$descripcion,$id_pedido_d_r_e);
+        if($data){
+            $response = [
+                "data" => [$data],
+                "error" => [],
+            ];
+            echo json_encode($response);
+        }else{
+            $response = [
+                "data" => [],
+                "error" => ["Ha ocurrido un error"],
+            ];
+            echo json_encode($response);
+        }
     }
 
     

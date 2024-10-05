@@ -1,5 +1,5 @@
 <?php
-    require_once '../../connection/connection.php';
+    require_once '../../../connection/connection.php';
 
 
     class FallasModel extends Connection{
@@ -47,25 +47,16 @@
             return $data;
         }
 
-        public function registrar_fallas($num_pedido="", $motivo="", $descripcion=""){
+        public function registrar_fallas($id_despachador = "",$motivo = "",$descripcion = "", $id_pedido_d_r_e = ""){
             
-            //Verificamos que el numero de pedido es correcto
-            $data = $this->verificar_num_pedido($num_pedido);
-
-            //En caso de que el numero de pedido este incorrecto regresamos array vacio
-            if(count($data) == 0){
-                return false;
-            }
-
-            $id_pedido = $data[0]['id_pedido'];
-
             // Consulta SQL
-            $sql = "INSERT INTO fallas (
-            id_pedido,
+            $sql = "INSERT INTO fallas_despachador (
+            despachador,
+            id_pedido_d_r_e,
             motivo,
             descripcion,
             fecha
-            ) VALUES (?,?,?,NOW())";
+            ) VALUES (?,?,?,?,NOW())";
             
             $is_register = false;
     
@@ -77,7 +68,7 @@
             }
     
             // Vincular parámetros
-            $stmt->bind_param("sss", $id_pedido,$motivo,$descripcion);
+            $stmt->bind_param("ssss", $id_despachador,$id_pedido_d_r_e,$motivo,$descripcion);
     
             // Ejecutar la consulta
             if ($stmt->execute()) {

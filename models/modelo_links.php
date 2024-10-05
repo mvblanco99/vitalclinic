@@ -10,14 +10,14 @@
             "registrar_cuenta" => "users/registrar_cuenta",
             "modificar_cuenta" => "users/modificar_cuenta",
             "registrar_producto" => "inventario/registrar_producto",
-            "registrar_ruta" => "almacen/registrar_ruta",
+            "registrar_ruta" => "almacen/rutas/registrar_ruta",
             "registrar_pedido" => "almacen/registrar_pedido",
             "registrar_pedido_por_partes" => "almacen/pedidos/registrar_pedido_por_partes",
             "modificar_pedido" => "almacen/pedidos/modificar_pedido",
             "eliminar_pedido" => "almacen/pedidos/eliminar_pedido",
             "consultar_pedido" => "almacen/pedidos/consultar_pedido",
             "rechequear_pedido" => "almacen/rechequeo/rechequear",
-            "registrar_fallas" => "almacen/registrar_fallas",
+            "registrar_fallas" => "almacen/fallas/registrar_fallas",
 
         ];
 
