@@ -334,7 +334,8 @@
                 embalador.apellido as apellido_embalador 
                 FROM pedidos_d_r_e 
                 INNER JOIN empleados as despachador on pedidos_d_r_e.id_despachador=despachador.id 
-                INNER JOIN empleados as rechequeador on pedidos_d_r_e.id_rechequeador=rechequeador.id 
+                INNER JOIN accounts on pedidos_d_r_e.id_rechequeador=accounts.id_account
+                INNER JOIN empleados as rechequeador on accounts.id_empleado=rechequeador.id
                 INNER JOIN empleados as embalador on pedidos_d_r_e.id_embalador=embalador.id 
                 WHERE pedidos_d_r_e.id_pedido = '$id_pedido'
                 ORDER BY id_pedido_d_r_e";

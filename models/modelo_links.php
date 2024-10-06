@@ -18,6 +18,7 @@
             "consultar_pedido" => "almacen/pedidos/consultar_pedido",
             "rechequear_pedido" => "almacen/rechequeo/rechequear",
             "registrar_fallas" => "almacen/fallas/registrar_fallas",
+            "eliminar_fallas" => "almacen/fallas/eliminar_fallas"
 
         ];
 

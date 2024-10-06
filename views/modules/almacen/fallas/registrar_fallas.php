@@ -37,7 +37,7 @@
                 </label>
             </form>
             
-            </span>
+        
             <div class="w-full h-fit">
                 <form class="flex flex-col items-center py-4 h-fit border-2 border-gray-200 rounded-md bg-blue-500 registrar">
 
