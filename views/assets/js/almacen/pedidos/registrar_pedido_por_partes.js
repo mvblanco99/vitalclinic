@@ -115,15 +115,17 @@ const registrar_pedido = async (form_data) => {
 
 const eliminar_despachador_tabla = (id_despachador) => {
   let index = null;
+  const despachadores_copy = [...despachadores];
   
-  for (let i = 0; i < despachadores.length; i++) {
-    if(despachadores.id_despachador === id_despachador){
+  for (let i = 0; i < despachadores_copy.length; i++) {
+    if(despachadores_copy[i].id_despachador == id_despachador){
       index = i;
       break;
     }
   }
 
-  despachadores.splice(index,1);
+  despachadores_copy.splice(index,1);
+  despachadores = despachadores_copy;
   mostrar_datos_tabla(despachadores);
 }
 
@@ -147,21 +149,17 @@ $partes.addEventListener('change',  e=> {
 })
 
 $empleado.addEventListener('change', e => {
-  if(numero_partes_pedido > 0){
-    if($empleado.value !== ""){
-      if(despachadores.length < numero_partes_pedido){
+  if(numero_partes_pedido > 0 && 
+    despachadores.length < numero_partes_pedido){
+      if(e.target.value !== ""){
         const object = {
-            id_despachador : $empleado.value,
-            nombre: $empleado.options[$empleado.selectedIndex].text
+          id_despachador : $empleado.value,
+          nombre: $empleado.options[$empleado.selectedIndex].text
         }
-    
         despachadores.push(object);
         mostrar_datos_tabla(despachadores)
+        e.target.selectedIndex = 0;
       }
-    }
-  }else{
-    alert('Primero debe indicar el numero de partes')
-    $empleado.selectedIndex = 0;
   }
 })
 
@@ -216,7 +214,7 @@ d.addEventListener('click', e => {
     
   //Eliminamos despachador de la lista
   if(e.target.classList.contains('delete')){
-      eliminar_despachador_tabla(despachadores,e.target.dataset.id);
+      eliminar_despachador_tabla(e.target.dataset.id);
   }
 
   if(e.target.classList.contains('registrar_pedido')){
