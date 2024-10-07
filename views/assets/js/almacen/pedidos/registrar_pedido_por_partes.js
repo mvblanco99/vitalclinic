@@ -5,8 +5,7 @@ $fragment = d.createDocumentFragment(),
 $empleado = d.querySelector("#empleado"),
 $ruta = d.querySelector("#ruta"),
 $partes = d.querySelector("#partes"),
-$body_table = d.querySelector("#body_table"),
-$registrar_pedido = d.querySelector("#registrar_pedido");
+$body_table = d.querySelector("#body_table");
 
 let numero_partes_pedido = 0;
 let despachadores = [];
@@ -136,6 +135,8 @@ const limpiarformmulario = () => {
   $ruta.selectedIndex = 0;
   d.querySelector('#cant_unidades').value = "";
   $empleado.selectedIndex = 0;
+  despachadores = [];
+  numero_partes_pedido = 1;
 }
 
 $partes.addEventListener('change',  e=> {
