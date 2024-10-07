@@ -81,9 +81,7 @@ const mostrar_datos_tabla= async(data) => {
         data.forEach((element,i) => {
             //Insertamos los datos en el template
             $template_body_table_pedidos.querySelector('.part').textContent = `${i+1}`;
-            $template_body_table_pedidos.querySelector('.select').classList.add(`select-${i+1}`);
             $template_body_table_pedidos.querySelector('.select').dataset.id = i+1;
-            mostrar_empleados(data_empleados,$template_body_table_pedidos.querySelector(`.select-${i+1}`));
             //guardamos una copia de la estrutura actual del template en la variable $node
             let $clone = $template_body_table_pedidos.cloneNode(true);
             //Guardamos el nodo en el fragment
@@ -94,45 +92,31 @@ const mostrar_datos_tabla= async(data) => {
         $body_table.innerHTML = "";
         //Insertamos el fragment en la lista
         $body_table.append($fragment);
+
+        //Llenamos con los datos de los empleados los select impresos en el paso anterior
+        const selects = Array.from(d.querySelectorAll('.select'));
+        selects.forEach((s,i) => {
+            mostrar_empleados(data_empleados,s);    
+        })
+
+        //Posicionamos cada uno de los select en el valor correspondiente con respecto a los despachadores del pedido
+        data.forEach((e,i)=>{
+            for (let j = 0; j < selects[i].options.length; j++) {
+                if (selects[i].options[j].value == e.id_despachador) {
+                    selects[i].selectedIndex = j;
+                    break;
+                }
+            } 
+        })
     }else{  
         $body_table.innerHTML = "";
     }
-
-    data.forEach((element,i) => {
-        if(element.id_despachador == 1){
-            d.querySelector(`.select-${i+1}`).selectedIndex = Number(element.id_despachador)
-        }else{
-            d.querySelector(`.select-${i+1}`).selectedIndex = Number(element.id_despachador) - 1
-        }
-        
-    });
 }
 
 const mostrar_data_form = (data) => {
-    
     d.querySelector("#cant_unidades").value = data.cantidad_unidades;
     d.querySelector("#ruta").selectedIndex = data.id_ruta;
-}
-
-const extraer_datos_pedido = async(form_data) => {
-    try {
-        const data_pedido = await app('./controllers/almacen/pedidos/pedidos.php?extraer_data_pedido=1','POST',form_data);
-        if(data_pedido.data.length > 0){
-            console.log(data_pedido)
-            mostrar_datos_tabla(format_data(data_pedido.data[0].partes_pedido));
-            mostrar_data_form(data_pedido.data[0]);
-            d.querySelector('#id_pedido').value = data_pedido.data[0].id_pedido;
-
-            d.querySelector('#cod_pedido').disabled = true;
-            $partes.disabled = true;
-
-            buscado = true;
-        }else{
-            alert('El número de pedido no se encuentra registrado')
-        }
-    } catch (error) {
-        console.log(error)
-    }
+    d.querySelector('#id_pedido').value = data.id_pedido;
 }
 
 const format_data = (data) => {
@@ -146,9 +130,31 @@ const format_data = (data) => {
         }
         data_partes_pedido.push(object);
     });
-
-    return data_partes_pedido;
 }
+
+const extraer_datos_pedido = async(form_data) => {
+
+    //Limpiamos el array para luego realizar una busqueda
+    data_partes_pedido = [];
+
+    try {
+        const data_pedido = await app('./controllers/almacen/pedidos/pedidos.php?extraer_data_pedido=1','POST',form_data);
+        if(data_pedido.data.length > 0){
+            format_data(data_pedido.data[0].partes_pedido);
+            mostrar_datos_tabla(data_partes_pedido);
+            mostrar_data_form(data_pedido.data[0]);
+            //buscado = true;
+
+            //console.log(data_pedido)
+        }else{
+            alert('El número de pedido no se encuentra registrado')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 
 const getDataForm = () => {
     const cod_pedido = d.querySelector('#cod_pedido');
@@ -239,11 +245,6 @@ d.addEventListener('change', e=> {
 d.addEventListener('click', e => {
     
     if(e.target.classList.contains('modificar_pedido')){
-      if(!buscado){
-        alert('Debe buscar el número de pedido');
-        d.querySelector('#cod_pedido').focus();
-        return;
-      }
       getDataForm();
     }
 });
@@ -266,5 +267,5 @@ d.addEventListener('submit', e=> {
 
 d.addEventListener('DOMContentLoaded', async e => {
    await extraer_data_empleados();
-    extraer_data_rutas();
+   await extraer_data_rutas();
 });
