@@ -321,23 +321,37 @@
                 $id_pedido = $data_tabla_pedidos[0]['id_pedido'];
                 
                 $sql2 = "SELECT 
-                pedidos_d_r_e.id as id_pedido_d_r_e, 
+                pedidos_d_r_e.id AS id_pedido_d_r_e, 
                 fecha_rechequeado,
-                despachador.id as id_despachador, 
-                despachador.nombre as nombre_despachador, 
-                despachador.apellido as apellido_despachador, 
-                rechequeador.id as id_rechequeador, 
-                rechequeador.nombre as nombre_rechequeador, 
-                rechequeador.apellido as apellido_rechequeador,
-                embalador.id as id_embalador,  
-                embalador.nombre as nombre_embalador, 
-                embalador.apellido as apellido_embalador 
+                despachador.id AS id_despachador, 
+                despachador.nombre AS nombre_despachador, 
+                despachador.apellido AS apellido_despachador,
+                rechequeador.id AS id_rechequeador, 
+                rechequeador.nombre AS nombre_rechequeador, 
+                rechequeador.apellido AS apellido_rechequeador,
+                embalador.id AS id_embalador,  
+                embalador.nombre AS nombre_embalador, 
+                embalador.apellido AS apellido_embalador,
+                COUNT(fallas_despachador.id) AS cantidad_fallas
                 FROM pedidos_d_r_e 
-                INNER JOIN empleados as despachador on pedidos_d_r_e.id_despachador=despachador.id 
-                INNER JOIN accounts on pedidos_d_r_e.id_rechequeador=accounts.id_account
-                INNER JOIN empleados as rechequeador on accounts.id_empleado=rechequeador.id
-                INNER JOIN empleados as embalador on pedidos_d_r_e.id_embalador=embalador.id 
+                LEFT JOIN empleados AS despachador ON pedidos_d_r_e.id_despachador = despachador.id 
+                LEFT JOIN accounts ON pedidos_d_r_e.id_rechequeador = accounts.id_account
+                LEFT JOIN empleados AS rechequeador ON accounts.id_empleado = rechequeador.id
+                LEFT JOIN empleados AS embalador ON pedidos_d_r_e.id_embalador = embalador.id
+                LEFT JOIN fallas_despachador ON pedidos_d_r_e.id = fallas_despachador.id_pedido_d_r_e
                 WHERE pedidos_d_r_e.id_pedido = '$id_pedido'
+                GROUP BY 
+                    pedidos_d_r_e.id, 
+                    fecha_rechequeado,
+                    despachador.id, 
+                    despachador.nombre, 
+                    despachador.apellido,
+                    rechequeador.id, 
+                    rechequeador.nombre, 
+                    rechequeador.apellido,
+                    embalador.id,  
+                    embalador.nombre, 
+                    embalador.apellido
                 ORDER BY id_pedido_d_r_e";
 
                 $result2 = $this->conn->query($sql2);

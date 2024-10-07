@@ -79,7 +79,7 @@ const formatDataSelect = (data) => {
 const extraer_datos_pedido = async(form_data) => {
 
     try {
-        const data_pedido = await app('./controllers/almacen/pedidos/pedidos.php?consultar_pedido=1','POST',form_data);
+        const data_pedido = await app('./controllers/almacen/rechequeo/rechequear.php?consultar_pedido=1','POST',form_data);
         if(data_pedido.data.length > 0){  
          // console.log(data_pedido.data[0].tabla_pedidos_d_r_e)
           dataFallas = [];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2024 a las 23:49:39
+-- Tiempo de generación: 07-10-2024 a las 17:44:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -139,9 +139,30 @@ CREATE TABLE `fallas_despachador` (
 
 INSERT INTO `fallas_despachador` (`id`, `despachador`, `id_pedido_d_r_e`, `motivo`, `descripcion`, `fecha`) VALUES
 (2, 4, 3, 1, 'Le falto un acetaminofen', '2024-10-05 17:39:13'),
-(3, 6, 1, 2, 'Trajo un diclofenac calox demas', '2024-10-05 17:41:18'),
-(4, 3, 4, 1, 'Le falto un acetaminofen', '2024-10-05 17:42:29'),
-(5, 3, 41, 2, 'kadkmadkadm', '2024-10-05 17:43:53');
+(5, 3, 41, 2, 'kadkmadkadm', '2024-10-05 17:43:53'),
+(6, 4, 45, 1, 'Le sobro dos diclofenac', '2024-10-06 10:50:02'),
+(7, 6, 47, 1, 'Le falto 1 amiodarona de land', '2024-10-06 10:50:21'),
+(8, 3, 44, 1, 'Le falto 1 atorvastatina', '2024-10-06 10:51:05'),
+(9, 3, 44, 1, 'falto una Dexametosa de kmplus', '2024-10-06 11:18:43'),
+(10, 3, 53, 1, 'admkadmkad', '2024-10-06 11:46:50'),
+(11, 3, 54, 2, 'Trajo un bisolvon demas', '2024-10-06 12:32:36'),
+(12, 3, 55, 1, 'Le falto una dexametasona', '2024-10-06 13:59:14'),
+(13, 3, 55, 2, 'Trajo un bisolvon demas', '2024-10-06 13:59:29'),
+(14, 4, 56, 3, 'Trajo un aceminofen de la sante en vez de calox', '2024-10-06 13:59:47'),
+(18, 1, 2, 1, '15151515', '2024-10-06 15:15:40'),
+(19, 4, 3, 1, 'ghibhbjhbjb', '2024-10-06 15:16:16'),
+(20, 6, 1, 1, 'fassffsfsf', '2024-10-07 10:07:44'),
+(21, 3, 4, 2, '8298952898', '2024-10-07 10:08:49'),
+(22, 1, 62, 1, 'wsfsfssf', '2024-10-07 10:48:46'),
+(23, 1, 62, 2, 'sfsfffsfsf', '2024-10-07 10:48:54'),
+(24, 1, 62, 3, 'wfwffw', '2024-10-07 10:49:00'),
+(25, 5, 63, 1, 'rwrwrwrr', '2024-10-07 10:49:07'),
+(26, 5, 63, 3, 'wrwrwwrwr', '2024-10-07 10:49:13'),
+(27, 6, 64, 1, 'wrwrwwrwr', '2024-10-07 10:49:19'),
+(28, 6, 64, 2, 'wrwrrwr', '2024-10-07 10:49:25'),
+(29, 6, 64, 1, 'wrrwrwrwr', '2024-10-07 10:49:30'),
+(30, 6, 64, 1, 'wrwrwrrrwrwrwr', '2024-10-07 10:49:37'),
+(31, 6, 64, 2, 'wrwwrrwrwrw', '2024-10-07 10:49:43');
 
 -- --------------------------------------------------------
 
@@ -239,7 +260,14 @@ INSERT INTO `pedidos` (`id_pedido`, `numero_pedido`, `id_ruta`, `fecha`, `cantid
 (30, '26532055', 1, '2024-10-03 12:21:37', 10000, 1),
 (31, '26532066', 1, '2024-10-03 17:46:37', 5200, 1),
 (32, '123321123', 1, '2024-10-03 17:48:11', 100, 1),
-(33, '123654', 1, '2024-10-05 17:42:51', 10000, 1);
+(33, '123654', 1, '2024-10-05 17:42:51', 10000, 1),
+(34, '256314', 1, '2024-10-06 10:48:32', 10000, 1),
+(36, '151851515', 1, '2024-10-06 11:40:12', 51515, 1),
+(37, '1230321', 1, '2024-10-06 13:57:45', 1000, 1),
+(39, '1230456', 1, '2024-10-07 09:22:03', 1000, 1),
+(40, '3210321', 1, '2024-10-07 10:47:56', 1000, 1),
+(41, '1230456789', 1, '2024-10-07 11:00:23', 1000, 1),
+(42, '1234569870', 1, '2024-10-07 11:01:33', 1000, 1);
 
 -- --------------------------------------------------------
 
@@ -302,7 +330,30 @@ INSERT INTO `pedidos_d_r_e` (`id`, `id_pedido`, `id_despachador`, `id_rechequead
 (39, 31, 6, 1, 6, '2024-10-03 17:46:57'),
 (40, 32, 6, 1, 3, '2024-10-03 17:48:21'),
 (41, 33, 3, 1, 3, '2024-10-05 17:43:28'),
-(42, 33, 7, 1, 3, '2024-10-05 17:43:28');
+(42, 33, 7, 1, 3, '2024-10-05 17:43:28'),
+(43, 34, 1, 1, 3, '2024-10-06 10:49:24'),
+(44, 34, 3, 1, 3, '2024-10-06 10:49:24'),
+(45, 34, 4, 1, 3, '2024-10-06 10:49:24'),
+(46, 34, 5, 1, 3, '2024-10-06 10:49:24'),
+(47, 34, 6, 1, 3, '2024-10-06 10:49:24'),
+(52, 36, 1, 3, 4, '2024-10-06 12:19:32'),
+(53, 36, 3, 1, 3, '2024-10-06 11:43:48'),
+(54, 36, 3, 2, 3, '2024-10-23 12:16:35'),
+(55, 37, 3, 1, 3, '2024-10-06 13:58:06'),
+(56, 37, 4, 1, 3, '2024-10-06 13:58:06'),
+(57, 37, 5, 1, 3, '2024-10-06 13:58:06'),
+(62, 39, 1, 1, 1, '2024-10-07 10:48:28'),
+(63, 39, 5, 1, 1, '2024-10-07 10:48:28'),
+(64, 39, 6, 1, 1, '2024-10-07 10:48:28'),
+(65, 40, 3, NULL, NULL, NULL),
+(66, 40, 6, NULL, NULL, NULL),
+(67, 40, 5, NULL, NULL, NULL),
+(68, 41, 1, 1, 3, '2024-10-07 11:00:39'),
+(69, 41, 3, 1, 3, '2024-10-07 11:00:39'),
+(70, 41, 4, 1, 3, '2024-10-07 11:00:39'),
+(71, 42, 1, NULL, NULL, NULL),
+(72, 42, 3, 1, 7, '2024-10-07 11:24:13'),
+(73, 42, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -659,7 +710,7 @@ ALTER TABLE `entrada_existencia_lotes_productos`
 -- AUTO_INCREMENT de la tabla `fallas_despachador`
 --
 ALTER TABLE `fallas_despachador`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `lotes`
@@ -683,13 +734,13 @@ ALTER TABLE `motivo_fallas`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_pedido` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos_d_r_e`
 --
 ALTER TABLE `pedidos_d_r_e`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `privilegios`
