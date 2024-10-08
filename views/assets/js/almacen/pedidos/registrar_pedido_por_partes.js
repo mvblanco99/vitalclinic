@@ -223,7 +223,6 @@ d.addEventListener('click', e => {
   }
 });
 
-
 d.addEventListener('DOMContentLoaded', e => {
   extraer_data_empleados();
   extraer_data_rutas();

@@ -193,6 +193,7 @@ const getDataForm = () => {
     modificar_pedido(formData)
 }
 
+
 const modificar_pedido = async (form_data) => {
     try {
         const res = await app('./controllers/almacen/pedidos/pedidos.php?modificar_pedido=1','POST',form_data);
