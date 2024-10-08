@@ -61,6 +61,13 @@ const rechequear_pedido = async(form_data) => {
         const res = await app('./controllers/almacen/rechequeo/rechequear.php?rechequear=1','POST',form_data);
         if(res.data.length > 0){
             alert('Registro exitoso');
+             d.querySelector("#form_parts").innerHTML = "";
+             d.querySelector('#container_parts').classList.add('hidden');
+             $embalador_seleccionado.value = '';
+             $empleado.selectedIndex = 0;
+             d.querySelector('#cod_pedido').value=''
+             embaladorSeleccionado = undefined;
+             embaladorAsignado = undefined;
           }else{
               alert(`${res.error}`)
           }

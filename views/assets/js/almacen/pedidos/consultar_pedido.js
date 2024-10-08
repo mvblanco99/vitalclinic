@@ -34,21 +34,28 @@ const mostrar_datos_tabla_pedidos = async(data) => {
 }
 
 const mostrar_datos_tabla_pedidos_d_r_e = async(data) => {
-
+    console.log(data)
   //Enlazamos el template creado en el HTML
   const $template_body_table_pedidos_d_r_e = d.querySelector('#template_body_table_pedidos_d_r_e').content;
 
   if(data.length > 0){
       
-      data.forEach(element => {
+      data.forEach((element,i) => {
           //Insertamos los datos en el template
-          $template_body_table_pedidos_d_r_e.querySelector('.part').textContent = element.id_pedido_d_r_e;
+          $template_body_table_pedidos_d_r_e.querySelector('.part').textContent = `${i+1}`;
+
           $template_body_table_pedidos_d_r_e.querySelector('.despachador').textContent = `${element.nombre_despachador} ${element.apellido_despachador}`;
-          $template_body_table_pedidos_d_r_e.querySelector('.rechequeador').textContent = `${element.nombre_rechequeador} ${element.apellido_rechequeador}`;;
-          $template_body_table_pedidos_d_r_e.querySelector('.embalador').textContent = `${element.nombre_embalador} ${element.apellido_embalador}`;;
+
+          const nombre_rechequeador = element.nombre_rechequeador !== null ? `${element.nombre_rechequeador} ${element.apellido_rechequeador}` : '';
+          $template_body_table_pedidos_d_r_e.querySelector('.rechequeador').textContent = nombre_rechequeador;
+
+          const nombre_embalador = element.nombre_embalador !== null ? `${element.nombre_embalador} ${element.apellido_embalador}` : '';
+          $template_body_table_pedidos_d_r_e.querySelector('.embalador').textContent = nombre_embalador;
+
+        //   $
           $template_body_table_pedidos_d_r_e.querySelector('.fecha_rechequeado').textContent = element.fecha_rechequeado
           ;
-          $template_body_table_pedidos_d_r_e.querySelector('.fallas').textContent = 0;
+          $template_body_table_pedidos_d_r_e.querySelector('.fallas').textContent = `${element.cantidad_fallas != null ? element.cantidad_fallas : '0'}`;
           //guardamos una copia de la $template_body_table_pedidosestrutura actual del template en la variable $node
           let $clone = $template_body_table_pedidos_d_r_e.cloneNode(true);
           //Guardamos el nodo en el fragment
@@ -68,7 +75,7 @@ const extraer_datos_pedido = async(form_data) => {
   try {
       const data_pedido = await app('./controllers/almacen/pedidos/pedidos.php?consultar_pedido=1','POST',form_data);
       if(data_pedido.data.length > 0){  
-        console.log(data_pedido.data[0].tabla_pedidos_d_r_e)
+        // console.log(data_pedido.data[0].tabla_pedidos_d_r_e)
         mostrar_datos_tabla_pedidos([data_pedido.data[0].tabla_pedidos]);
         mostrar_datos_tabla_pedidos_d_r_e(data_pedido.data[0].tabla_pedidos_d_r_e)
       }else{

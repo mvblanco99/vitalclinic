@@ -139,5 +139,79 @@ class RechequearPedidoModel extends Connection{
             echo "Transacción fallida: " . $e->getMessage();
             return false;
         }   
-    }   
+    }
+    
+    public function consultar_pedido($numero_pedido = ""){
+        session_start();
+        $user = $_SESSION['user']['id_account'];
+        $data_tabla_pedidos = array();
+        $data_tabla_pedidos_d_r_e = array();
+
+        $sql = "SELECT
+        numero_pedido, 
+        id_pedido,
+        rutas.name as nombre_ruta,
+        fecha,
+        cantidad_unidades,
+        distribuidor_pedidos,
+        nombre as nombre_distribuidor,
+        apellido as apellido_distribuidor
+        FROM pedidos
+        INNER JOIN accounts on pedidos.distribuidor_pedidos=accounts.id_account
+        INNER JOIN rutas on pedidos.id_ruta=rutas.id
+        INNER JOIN empleados on accounts.id_empleado=empleados.id
+        WHERE numero_pedido = '$numero_pedido'";
+
+        $result = $this->conn->query($sql);
+        // Devolver los resultados como un array JSON
+        
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                $data_tabla_pedidos[] = $row;
+            }
+        }
+
+        // Cerrar conexión
+        //$this->conn->close();
+        if(count($data_tabla_pedidos) > 0){
+
+            $id_pedido = $data_tabla_pedidos[0]['id_pedido'];
+            
+            $sql2 = "SELECT 
+            pedidos_d_r_e.id as id_pedido_d_r_e, 
+            fecha_rechequeado,
+            despachador.id as id_despachador, 
+            despachador.nombre as nombre_despachador, 
+            despachador.apellido as apellido_despachador, 
+            rechequeador.id as id_rechequeador, 
+            rechequeador.nombre as nombre_rechequeador, 
+            rechequeador.apellido as apellido_rechequeador,
+            embalador.id as id_embalador,  
+            embalador.nombre as nombre_embalador, 
+            embalador.apellido as apellido_embalador 
+            FROM pedidos_d_r_e 
+            INNER JOIN empleados as despachador on pedidos_d_r_e.id_despachador=despachador.id 
+            INNER JOIN accounts on pedidos_d_r_e.id_rechequeador=accounts.id_account
+            INNER JOIN empleados as rechequeador on accounts.id_empleado=rechequeador.id
+            INNER JOIN empleados as embalador on pedidos_d_r_e.id_embalador=embalador.id 
+            WHERE pedidos_d_r_e.id_pedido = '$id_pedido' AND pedidos_d_r_e.id_rechequeador = '$user'
+            ORDER BY id_pedido_d_r_e";
+
+            $result2 = $this->conn->query($sql2);
+            // Devolver los resultados como un array JSON
+
+            if ($result2->num_rows > 0) {
+                // Output data of each row
+                while($row = $result2->fetch_assoc()) {
+                    $data_tabla_pedidos_d_r_e[] = $row;
+                }
+            }
+
+            return ['tabla_pedidos' => $data_tabla_pedidos[0],'tabla_pedidos_d_r_e' => $data_tabla_pedidos_d_r_e];
+        }else{
+            return [];
+        }
+    }
+
 }
