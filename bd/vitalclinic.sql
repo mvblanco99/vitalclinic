@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2024 a las 17:44:42
+-- Tiempo de generación: 08-10-2024 a las 23:51:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -181,24 +181,39 @@ CREATE TABLE `lotes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mesa_rechequeadores`
+-- Estructura de tabla para la tabla `mesas_rechequeadoras`
 --
 
-CREATE TABLE `mesa_rechequeadores` (
+CREATE TABLE `mesas_rechequeadoras` (
   `id` int(11) NOT NULL,
-  `num_mesa` int(11) NOT NULL,
-  `id_rechequeador` int(11) NOT NULL,
-  `id_embalador` int(11) NOT NULL,
-  `horario_almuerzo` varchar(8) NOT NULL,
-  `dia_libre` varchar(10) NOT NULL
+  `num_mesa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `mesa_rechequeadores`
+-- Volcado de datos para la tabla `mesas_rechequeadoras`
 --
 
-INSERT INTO `mesa_rechequeadores` (`id`, `num_mesa`, `id_rechequeador`, `id_embalador`, `horario_almuerzo`, `dia_libre`) VALUES
-(1, 1, 1, 3, '12pm', 'Viernes');
+INSERT INTO `mesas_rechequeadoras` (`id`, `num_mesa`) VALUES
+(2, 1),
+(3, 2),
+(4, 3),
+(5, 4),
+(6, 5),
+(7, 6),
+(8, 7),
+(9, 8),
+(10, 9),
+(11, 10),
+(12, 11),
+(13, 12),
+(14, 13),
+(15, 14),
+(16, 15),
+(17, 16),
+(18, 17),
+(19, 18),
+(20, 19),
+(21, 20);
 
 -- --------------------------------------------------------
 
@@ -219,6 +234,20 @@ INSERT INTO `motivo_fallas` (`id`, `descripcion`) VALUES
 (1, 'Faltante'),
 (2, 'Sobrante'),
 (3, 'Invertido');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pareja_rechequeadores_embaladores`
+--
+
+CREATE TABLE `pareja_rechequeadores_embaladores` (
+  `id` int(11) NOT NULL,
+  `id_mesa` int(11) NOT NULL,
+  `id_rechequeador` int(11) NOT NULL,
+  `id_embalador` int(11) NOT NULL,
+  `turno` enum('1','2') NOT NULL COMMENT '1-Mañana,2-Tarde'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -351,9 +380,9 @@ INSERT INTO `pedidos_d_r_e` (`id`, `id_pedido`, `id_despachador`, `id_rechequead
 (68, 41, 1, 1, 3, '2024-10-07 11:00:39'),
 (69, 41, 3, 1, 3, '2024-10-07 11:00:39'),
 (70, 41, 4, 1, 3, '2024-10-07 11:00:39'),
-(71, 42, 1, NULL, NULL, NULL),
+(71, 42, 1, 1, 3, '2024-10-07 14:03:21'),
 (72, 42, 3, 1, 7, '2024-10-07 11:24:13'),
-(73, 42, 4, NULL, NULL, NULL);
+(73, 42, 4, 1, 3, '2024-10-07 14:01:50');
 
 -- --------------------------------------------------------
 
@@ -371,6 +400,7 @@ CREATE TABLE `privilegios` (
 --
 
 INSERT INTO `privilegios` (`id`, `accion`) VALUES
+(23, 'asignar_mesa'),
 (5, 'consultar_pedido'),
 (12, 'eliminar_fallas_pedido'),
 (4, 'eliminar_pedido'),
@@ -391,7 +421,8 @@ INSERT INTO `privilegios` (`id`, `accion`) VALUES
 (9, 'registrar_salida_articulo'),
 (10, 'registrar_salida_excepcional_articulos'),
 (16, 'visualizar_estadisticas'),
-(19, 'visualizar_estadisticas_fallas_despachador');
+(19, 'visualizar_estadisticas_fallas_despachador'),
+(22, 'visualizar_total_pedidos');
 
 -- --------------------------------------------------------
 
@@ -484,7 +515,9 @@ INSERT INTO `roles_privilegios` (`id`, `id_role`, `id_privilegio`) VALUES
 (51, 6, 20),
 (52, 1, 21),
 (53, 2, 21),
-(54, 3, 21);
+(54, 3, 21),
+(55, 1, 22),
+(56, 1, 23);
 
 -- --------------------------------------------------------
 
@@ -595,19 +628,24 @@ ALTER TABLE `lotes`
   ADD KEY `art` (`art`);
 
 --
--- Indices de la tabla `mesa_rechequeadores`
+-- Indices de la tabla `mesas_rechequeadoras`
 --
-ALTER TABLE `mesa_rechequeadores`
+ALTER TABLE `mesas_rechequeadoras`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `num_mesa` (`num_mesa`),
-  ADD KEY `id_rechequeador` (`id_rechequeador`),
-  ADD KEY `id_embalador` (`id_embalador`);
+  ADD UNIQUE KEY `num_mesa` (`num_mesa`);
 
 --
 -- Indices de la tabla `motivo_fallas`
 --
 ALTER TABLE `motivo_fallas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pareja_rechequeadores_embaladores`
+--
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_mesa` (`id_mesa`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -719,16 +757,22 @@ ALTER TABLE `lotes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `mesa_rechequeadores`
+-- AUTO_INCREMENT de la tabla `mesas_rechequeadoras`
 --
-ALTER TABLE `mesa_rechequeadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `mesas_rechequeadoras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `motivo_fallas`
 --
 ALTER TABLE `motivo_fallas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pareja_rechequeadores_embaladores`
+--
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -746,7 +790,7 @@ ALTER TABLE `pedidos_d_r_e`
 -- AUTO_INCREMENT de la tabla `privilegios`
 --
 ALTER TABLE `privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -758,7 +802,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `roles_privilegios`
 --
 ALTER TABLE `roles_privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `rutas`
@@ -811,11 +855,10 @@ ALTER TABLE `lotes`
   ADD CONSTRAINT `lotes_ibfk_1` FOREIGN KEY (`art`) REFERENCES `articulos` (`art`);
 
 --
--- Filtros para la tabla `mesa_rechequeadores`
+-- Filtros para la tabla `pareja_rechequeadores_embaladores`
 --
-ALTER TABLE `mesa_rechequeadores`
-  ADD CONSTRAINT `mesa_rechequeadores_ibfk_1` FOREIGN KEY (`id_embalador`) REFERENCES `empleados` (`id`),
-  ADD CONSTRAINT `mesa_rechequeadores_ibfk_2` FOREIGN KEY (`id_rechequeador`) REFERENCES `accounts` (`id_account`);
+ALTER TABLE `pareja_rechequeadores_embaladores`
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesas_rechequeadoras` (`id`);
 
 --
 -- Filtros para la tabla `pedidos`
