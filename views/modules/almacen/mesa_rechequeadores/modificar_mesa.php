@@ -27,102 +27,103 @@
                 <tbody id="body_table_mesa">
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">1</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">2</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">3</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">4</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">5</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">6</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">7</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">8</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">9</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">10</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">11</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">12</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">13</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">14</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                    </tr><tr class="hover:bg-gray-200">
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">15</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">16</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">17</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">18</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">19</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                     <tr class="hover:bg-gray-200">
                         <td class="n_mesa border-2 border-black-500 text-black text-center font-medium">20</td>
-                        <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
-                        <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+                        <td class="rechequeador border-2 border-black-500 text-black text-center"></td>
+                        <td class="embalador border-2 border-black-500 text-black text-center"></td>
                     </tr>
                 </tbody>
             </table>
@@ -133,8 +134,9 @@
 
 <template id="template_body_table_mesa">
     <tr class="hover:bg-gray-200">
-        <td class="n_mesa border-2 border-black-500 text-black text-center"></td>
+        <td class="n_mesa border-2 border-black-500 text-black text-center font-medium"></td>
         <td class="rechequeador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
         <td class="embalador border-2 border-black-500 text-black text-center"><select name="" id="" class="w-full border-2 border-gray-300 rounded-md font-extralight text-black-500 font-medium text-base focus:outline-none select"></select></td>
+        <td class="embalador border-2 border-black-500 text-black text-center"><button>Editar</button></td>
     </tr>
 </template>
