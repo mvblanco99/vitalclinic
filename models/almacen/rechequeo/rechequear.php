@@ -18,8 +18,8 @@ class RechequearPedidoModel extends Connection{
         id_embalador,
         nombre,
         apellido
-        FROM mesa_rechequeadores
-        inner join empleados on mesa_rechequeadores.id_embalador = empleados.id
+        FROM pareja_rechequeadores_embaladores
+        inner join empleados on pareja_rechequeadores_embaladores.id_embalador = empleados.id
         WHERE id_rechequeador = '$user'";
         $result = $this->conn->query($sql);
 

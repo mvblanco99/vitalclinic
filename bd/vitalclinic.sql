@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2024 a las 23:51:27
+-- Tiempo de generación: 09-10-2024 a las 20:00:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -244,10 +244,56 @@ INSERT INTO `motivo_fallas` (`id`, `descripcion`) VALUES
 CREATE TABLE `pareja_rechequeadores_embaladores` (
   `id` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL,
-  `id_rechequeador` int(11) NOT NULL,
-  `id_embalador` int(11) NOT NULL,
+  `id_rechequeador` int(11) DEFAULT NULL,
+  `id_embalador` int(11) DEFAULT NULL,
   `turno` enum('1','2') NOT NULL COMMENT '1-Mañana,2-Tarde'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `pareja_rechequeadores_embaladores`
+--
+
+INSERT INTO `pareja_rechequeadores_embaladores` (`id`, `id_mesa`, `id_rechequeador`, `id_embalador`, `turno`) VALUES
+(21, 2, 3, 1, '1'),
+(22, 3, 1, 7, '1'),
+(23, 4, 3, 5, '1'),
+(24, 5, 2, 3, '1'),
+(25, 6, NULL, NULL, '1'),
+(26, 7, NULL, NULL, '1'),
+(27, 8, NULL, NULL, '1'),
+(28, 9, NULL, NULL, '1'),
+(29, 10, NULL, NULL, '1'),
+(30, 11, NULL, NULL, '1'),
+(31, 12, NULL, NULL, '1'),
+(32, 13, NULL, NULL, '1'),
+(33, 14, NULL, NULL, '1'),
+(34, 15, NULL, NULL, '1'),
+(35, 16, NULL, NULL, '1'),
+(36, 17, NULL, NULL, '1'),
+(37, 18, NULL, NULL, '1'),
+(38, 19, NULL, NULL, '1'),
+(39, 20, NULL, NULL, '1'),
+(40, 21, NULL, NULL, '1'),
+(41, 2, 3, 6, '2'),
+(42, 3, 2, 4, '2'),
+(43, 4, 2, 7, '2'),
+(44, 5, 3, 4, '2'),
+(45, 6, NULL, NULL, '2'),
+(46, 7, NULL, NULL, '2'),
+(47, 8, NULL, NULL, '2'),
+(48, 9, NULL, NULL, '2'),
+(49, 10, NULL, NULL, '2'),
+(50, 11, NULL, NULL, '2'),
+(51, 12, NULL, NULL, '2'),
+(52, 13, NULL, NULL, '2'),
+(53, 14, NULL, NULL, '2'),
+(54, 15, NULL, NULL, '2'),
+(55, 16, NULL, NULL, '2'),
+(56, 17, NULL, NULL, '2'),
+(57, 18, NULL, NULL, '2'),
+(58, 19, NULL, NULL, '2'),
+(59, 20, NULL, NULL, '2'),
+(60, 21, NULL, NULL, '2');
 
 -- --------------------------------------------------------
 
@@ -645,7 +691,9 @@ ALTER TABLE `motivo_fallas`
 --
 ALTER TABLE `pareja_rechequeadores_embaladores`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_mesa` (`id_mesa`);
+  ADD KEY `id_mesa` (`id_mesa`),
+  ADD KEY `id_rechequeador` (`id_rechequeador`),
+  ADD KEY `id_embalador` (`id_embalador`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -772,7 +820,7 @@ ALTER TABLE `motivo_fallas`
 -- AUTO_INCREMENT de la tabla `pareja_rechequeadores_embaladores`
 --
 ALTER TABLE `pareja_rechequeadores_embaladores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
@@ -858,7 +906,9 @@ ALTER TABLE `lotes`
 -- Filtros para la tabla `pareja_rechequeadores_embaladores`
 --
 ALTER TABLE `pareja_rechequeadores_embaladores`
-  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesas_rechequeadoras` (`id`);
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesas_rechequeadoras` (`id`),
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_2` FOREIGN KEY (`id_rechequeador`) REFERENCES `accounts` (`id_account`),
+  ADD CONSTRAINT `pareja_rechequeadores_embaladores_ibfk_3` FOREIGN KEY (`id_embalador`) REFERENCES `empleados` (`id`);
 
 --
 -- Filtros para la tabla `pedidos`
